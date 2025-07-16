@@ -31,11 +31,11 @@ class DataGenerator:
             "IFPB - Campus Itaporanga",
             "IFPB - Campus Catolé do Rocha",
             "IFPB - Campus Areia",
-            "IFPB - Campus Bananeiras",
-            "IFPB - Campus Mangabeira",
+            "IFPB - Campus Queimadas",
+            "IFPB - Campus Alagoa Grande",
             "IFPB - Campus Pedras de Fogo",
-            "IFPB - Campus Cabaceiras",
-            "IFPB - Campus Sumé"
+            "IFPB - Campus Mamanguape",
+            "IFPB - Campus Sapé"
         ]
         
         self.cursos = [
