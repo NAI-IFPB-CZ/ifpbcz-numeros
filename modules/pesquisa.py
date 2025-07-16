@@ -12,7 +12,7 @@ def pesquisa_module(data_gen):
     # Cabeçalho com logo
     display_header_with_logo("Pesquisa")
     
-    # Gerar dados
+    # Gerar dados, se necessário, se USE_REAL_DATA for False em config.py
     dados_pesquisa = data_gen.gerar_dados_pesquisa()
     
     # Verificar se os dados foram gerados corretamente
@@ -333,35 +333,6 @@ def pesquisa_module(data_gen):
     
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # Rodapé
-    display_footer()
-    
-    with col1:
-        st.markdown(f"""
-        <div class="kpi-container">
-            <div class="kpi-title">ARTIGOS PUBLICADOS</div>
-            <div class="kpi-value">{artigos_publicados:,}</div>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    with col2:
-        st.markdown(f"""
-        <div class="kpi-container">
-            <div class="kpi-title">CAPÍTULOS DE LIVROS PUBLICADOS</div>
-            <div class="kpi-value">{capitulos_livros:,}</div>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    with col3:
-        st.markdown(f"""
-        <div class="kpi-container">
-            <div class="kpi-title">TRABALHOS EM EVENTOS PUBLICADOS</div>
-            <div class="kpi-value">{trabalhos_eventos:,}</div>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    st.markdown("---")
-    
     # Seções expandíveis por tipo de publicação
     tipos_publicacao = dados_pesquisa['tipo_publicacao'].unique()
     
@@ -465,116 +436,6 @@ def pesquisa_module(data_gen):
                     st.info("Não há dados para o ano selecionado.")
             
             st.markdown('<div class="fonte-dados">Fonte de Dados: Plataforma Lattes</div>', unsafe_allow_html=True)
-    
-    # Gráfico adicional: Produção por Área de Conhecimento
-    st.markdown('<div class="chart-container">', unsafe_allow_html=True)
-    st.subheader("📊 Produção por Área de Conhecimento")
-    
-    col1, col2, col3 = st.columns(3)
-    
-    with col1:
-        anos_disponiveis = sorted(dados_pesquisa['ano'].unique(), reverse=True)
-        anos_selecionados = st.multiselect(
-            "Anos:",
-            anos_disponiveis,
-            default=[anos_disponiveis[0]] if anos_disponiveis else [],
-            key="anos_area"
-        )
-    
-    with col2:
-        tipo_area = st.selectbox(
-            "Tipo de Publicação:",
-            ["Todos"] + list(dados_pesquisa['tipo_publicacao'].unique()),
-            key="tipo_area"
-        )
-    
-    with col3:
-        modo_exibicao = st.selectbox(
-            "Modo de Exibição:",
-            ["Por Ano", "Total Acumulado"],
-            key="modo_area"
-        )
-    
-    # Verificar se há anos selecionados
-    if not anos_selecionados:
-        st.warning("Selecione pelo menos um ano para visualizar os dados.")
-    else:
-        # Filtrar dados
-        dados_area = dados_pesquisa[dados_pesquisa['ano'].isin(anos_selecionados)]
-        
-        if tipo_area != "Todos":
-            dados_area = dados_area[dados_area['tipo_publicacao'] == tipo_area]
-        
-        if modo_exibicao == "Por Ano":
-            # Mostrar evolução por ano
-            dados_grafico_area = dados_area.groupby(['ano', 'area_conhecimento'])['quantidade'].sum().reset_index()
-            
-            fig_area = px.bar(
-                dados_grafico_area,
-                x='area_conhecimento',
-                y='quantidade',
-                color='ano',
-                title=f"Evolução da Produção por Área de Conhecimento ({min(anos_selecionados)}-{max(anos_selecionados)})",
-                color_discrete_sequence=px.colors.qualitative.Set3,
-                barmode='group'
-            )
-            
-            fig_area.update_layout(
-                xaxis_title="Área de Conhecimento",
-                yaxis_title="Quantidade",
-                xaxis_tickangle=-45,
-                height=500,
-                legend_title="Ano"
-            )
-        elif modo_exibicao == "Total Acumulado":
-            # Mostrar total acumulado
-            dados_grafico_area = dados_area.groupby('area_conhecimento')['quantidade'].sum().reset_index()
-            
-            fig_area = px.bar(
-                dados_grafico_area,
-                x='area_conhecimento',
-                y='quantidade',
-                title=f"Produção Acumulada por Área de Conhecimento ({min(anos_selecionados)}-{max(anos_selecionados)})",
-                color_discrete_sequence=['#1a8c73']
-            )
-            
-            fig_area.update_layout(
-                xaxis_title="Área de Conhecimento",
-                yaxis_title="Quantidade Total",
-                xaxis_tickangle=-45,
-                height=400
-            )
-        
-        st.plotly_chart(fig_area, use_container_width=True)
-        
-        # Adicionar gráfico de linhas para mostrar evolução temporal quando múltiplos anos são selecionados
-        if len(anos_selecionados) > 1:
-            st.subheader("📈 Evolução Temporal por Área de Conhecimento")
-            
-            # Dados para o gráfico de linhas
-            dados_linha = dados_area.groupby(['ano', 'area_conhecimento'])['quantidade'].sum().reset_index()
-            
-            fig_linha = px.line(
-                dados_linha,
-                x='ano',
-                y='quantidade',
-                color='area_conhecimento',
-                title="Evolução Temporal da Produção por Área",
-                markers=True,
-                color_discrete_sequence=px.colors.qualitative.Set3
-            )
-            
-            fig_linha.update_layout(
-                xaxis_title="Ano",
-                yaxis_title="Quantidade",
-                height=400,
-                legend_title="Área de Conhecimento"
-            )
-            
-            st.plotly_chart(fig_linha, use_container_width=True)
-    
-    st.markdown('<div class="fonte-dados">Fonte de Dados: Plataforma Lattes</div>', unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
     
     # Rodapé
     display_footer()

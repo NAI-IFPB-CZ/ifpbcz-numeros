@@ -2,7 +2,7 @@
 Configuração para alternância entre dados sintéticos e reais
 
 Para usar dados reais:
-1. Execute: python criar_planilhas_exemplo.py (para criar exemplos)
+1. Execute: python criar_planilhas_exemplo_real.py (para criar exemplos)
 2. Substitua os arquivos Excel na pasta 'dados/' pelos seus dados reais
 3. Altere USE_REAL_DATA para True
 4. Reinicie o sistema Streamlit
