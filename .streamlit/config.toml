@@ -1,0 +1,19 @@
+[global]
+showWarningOnDirectExecution = false
+
+[server]
+runOnSave = true
+port = 8502
+
+[browser]
+gatherUsageStats = false
+
+[theme]
+primaryColor = "#1a8c73"
+backgroundColor = "#f8f9fa"
+secondaryBackgroundColor = "#ffffff"
+textColor = "#262730"
+
+[ui]
+hideTopBar = true
+hideSidebarNav = false

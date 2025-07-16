@@ -1,0 +1,17 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Executar Sistema Dashboard IFPB-CZ",
+			"type": "shell",
+			"command": "D:/Cloud/github/DEV/NAI/streamlit-nai/ifpbcz-numeros/.venv/Scripts/streamlit.exe",
+			"args": [
+				"run",
+				"app.py"
+			],
+			"group": "build",
+			"isBackground": true,
+			"problemMatcher": []
+		}
+	]
+}
