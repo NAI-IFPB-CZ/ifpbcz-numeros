@@ -32,7 +32,7 @@ class DataGenerator:
             "IFPB - Campus Catolé do Rocha",
             "IFPB - Campus Areia",
             "IFPB - Campus Queimadas",
-            "IFPB - Campus Alagoa Grande",
+            "IFPB - Campus Alagoa Grande",
             "IFPB - Campus Pedras de Fogo",
             "IFPB - Campus Mamanguape",
             "IFPB - Campus Sapé"
