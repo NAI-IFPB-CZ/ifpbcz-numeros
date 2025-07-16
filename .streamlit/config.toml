@@ -3,7 +3,7 @@ showWarningOnDirectExecution = false
 
 [server]
 runOnSave = true
-port = 8502
+port = 8503
 
 [browser]
 gatherUsageStats = false

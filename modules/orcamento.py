@@ -162,7 +162,7 @@ def orcamento_module(data_gen):
     )
     
     # Formatar valores no eixo Y
-    fig.update_yaxis(tickformat='.0f')
+    fig.update_yaxes(tickformat='.0f')
     
     st.plotly_chart(fig, use_container_width=True)
     

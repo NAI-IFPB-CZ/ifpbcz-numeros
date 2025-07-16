@@ -286,7 +286,12 @@ class DataGenerator:
                                 'genero': random.choice(self.generos)
                             })
         
-        return pd.DataFrame(dados)
+        df = pd.DataFrame(dados)
+        
+        # Salvar dados no Excel
+        self._salvar_dados_excel(df, "dados_assistencia", "Dados_Assistencia")
+        
+        return df
     
     def gerar_dados_pesquisa(self):
         """Gera dados para o módulo de Pesquisa"""
@@ -335,7 +340,12 @@ class DataGenerator:
                             'autor_principal': f"Prof. {random.choice(['João', 'Maria', 'Pedro', 'Ana', 'Carlos', 'Lucia'])} Silva"
                         })
         
-        return pd.DataFrame(dados)
+        df = pd.DataFrame(dados)
+        
+        # Salvar dados no Excel
+        self._salvar_dados_excel(df, "dados_pesquisa", "Dados_Pesquisa")
+        
+        return df
     
     def gerar_dados_extensao(self):
         """Gera dados para o módulo de Extensão"""
@@ -364,7 +374,12 @@ class DataGenerator:
                             'tipo_necessidade': random.choice(self.tipos_necessidades) if pne > 0 else None
                         })
         
-        return pd.DataFrame(dados)
+        df = pd.DataFrame(dados)
+        
+        # Salvar dados no Excel
+        self._salvar_dados_excel(df, "dados_extensao", "Dados_Extensao")
+        
+        return df
     
     def gerar_dados_orcamento(self):
         """Gera dados para o módulo de Orçamento"""
@@ -392,7 +407,12 @@ class DataGenerator:
                         'pago': pago
                     })
         
-        return pd.DataFrame(dados)
+        df = pd.DataFrame(dados)
+        
+        # Salvar dados no Excel
+        self._salvar_dados_excel(df, "dados_orcamento", "Dados_Orcamento")
+        
+        return df
     
     def gerar_dados_servidores(self):
         """Gera dados para o módulo de Servidores"""
@@ -422,7 +442,12 @@ class DataGenerator:
                     'total_servidores': docentes + tecnicos
                 })
         
-        return pd.DataFrame(dados)
+        df = pd.DataFrame(dados)
+        
+        # Salvar dados no Excel
+        self._salvar_dados_excel(df, "dados_servidores", "Dados_Servidores")
+        
+        return df
     
     def gerar_dados_ouvidoria(self):
         """Gera dados para o módulo de Ouvidoria"""
@@ -452,7 +477,12 @@ class DataGenerator:
                                 'dias_atendimento': dias_atendimento
                             })
         
-        return pd.DataFrame(dados)
+        df = pd.DataFrame(dados)
+        
+        # Salvar dados no Excel
+        self._salvar_dados_excel(df, "dados_ouvidoria", "Dados_Ouvidoria")
+        
+        return df
     
     def gerar_dados_auditoria(self):
         """Gera dados para o módulo de Auditoria"""
@@ -477,7 +507,12 @@ class DataGenerator:
                     'percentual_atendimento': (recomendacoes_atendidas / recomendacoes_emitidas) * 100
                 })
         
-        return pd.DataFrame(dados)
+        df = pd.DataFrame(dados)
+        
+        # Salvar dados no Excel
+        self._salvar_dados_excel(df, "dados_auditoria", "Dados_Auditoria")
+        
+        return df
     
     def gerar_dados_mundo_trabalho(self):
         """Gera dados para o módulo de Mundo do Trabalho"""
@@ -507,7 +542,12 @@ class DataGenerator:
                         'saldo': saldo
                     })
         
-        return pd.DataFrame(dados)
+        df = pd.DataFrame(dados)
+        
+        # Salvar dados no Excel
+        self._salvar_dados_excel(df, "dados_mundo_trabalho", "Dados_Mundo_Trabalho")
+        
+        return df
     
     def _adicionar_palavras_chave(self, df):
         """Adiciona coluna de palavras-chave aos dados de pesquisa"""
@@ -552,7 +592,7 @@ class DataGenerator:
             return ', '.join(palavras_selecionadas)
         
         # Adicionar coluna de palavras-chave
-        df['palavras_chave'] = df['area_pesquisa'].apply(gerar_palavras_chave)
+        df['palavras_chave'] = df['area_conhecimento'].apply(gerar_palavras_chave)
         
         return df
     

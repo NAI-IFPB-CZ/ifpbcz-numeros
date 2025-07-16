@@ -148,6 +148,66 @@ st.markdown("""
         background-color: #f8f9fa;
     }
     
+    /* Garantir que todos os elementos de fundo sejam brancos */
+    .main .block-container {
+        background-color: #f8f9fa;
+        padding: 2rem;
+    }
+    
+    section[data-testid="stSidebar"] {
+        background-color: #ffffff;
+        border-right: 1px solid #e0e0e0;
+    }
+    
+    .stSelectbox > div > div {
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+    
+    /* Adicionar estilos para melhorar contraste */
+    .stSelectbox > div > div > div {
+        background-color: white !important;
+        border: 1px solid #ddd !important;
+        border-radius: 4px !important;
+    }
+    
+    .stMultiSelect > div > div > div {
+        background-color: white !important;
+        border: 1px solid #ddd !important;
+        border-radius: 4px !important;
+    }
+    
+    .stSlider > div > div > div {
+        background-color: white !important;
+    }
+    
+    .stTextInput > div > div > input {
+        background-color: white !important;
+        border: 1px solid #ddd !important;
+        border-radius: 4px !important;
+    }
+    
+    .stNumberInput > div > div > input {
+        background-color: white !important;
+        border: 1px solid #ddd !important;
+        border-radius: 4px !important;
+    }
+    
+    /* Melhorar contraste dos botões */
+    .stButton > button {
+        background-color: #1a8c73 !important;
+        color: white !important;
+        border: 1px solid #0d5a4e !important;
+        border-radius: 4px !important;
+        transition: all 0.2s ease !important;
+    }
+    
+    .stButton > button:hover {
+        background-color: #0d5a4e !important;
+        transform: translateY(-1px) !important;
+    }
+    
     /* Estilo principal */
     .main-header {
         background: linear-gradient(90deg, #0d5a4e, #1a8c73);
@@ -200,9 +260,16 @@ st.markdown("""
         background: white;
         padding: 1.5rem;
         border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         border-left: 4px solid #1a8c73;
         margin: 1rem 0;
+        border: 1px solid #e0e0e0;
+        transition: transform 0.2s ease;
+    }
+    
+    .kpi-container:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
     
     .kpi-title {
@@ -221,15 +288,17 @@ st.markdown("""
     
     /* Sidebar */
     .sidebar .sidebar-content {
-        background: #f8f9fa;
+        background: white;
     }
     
     /* Filtros */
     .filter-container {
-        background: #f8f9fa;
-        padding: 1rem;
+        background: white;
+        padding: 1.5rem;
         border-radius: 8px;
         margin: 1rem 0;
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
     
     /* Gráficos */
@@ -237,8 +306,9 @@ st.markdown("""
         background: white;
         padding: 1.5rem;
         border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         margin: 1rem 0;
+        border: 1px solid #e0e0e0;
     }
     
     .fonte-dados {
