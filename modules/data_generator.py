@@ -6,6 +6,23 @@ import os
 import warnings
 warnings.filterwarnings('ignore')
 
+# Importar configurações
+try:
+    from config import (
+        USE_REAL_DATA, 
+        PERMITIR_CRIACAO_PLANILHAS, 
+        SOBRESCREVER_ARQUIVOS_EXISTENTES, 
+        MODO_SOMENTE_LEITURA,
+        MOSTRAR_LOGS
+    )
+except ImportError:
+    # Configurações padrão se config.py não existir
+    USE_REAL_DATA = False
+    PERMITIR_CRIACAO_PLANILHAS = False
+    SOBRESCREVER_ARQUIVOS_EXISTENTES = False
+    MODO_SOMENTE_LEITURA = True
+    MOSTRAR_LOGS = True
+
 class DataGenerator:
     def __init__(self):
         self.dados_directory = "dados"
@@ -140,25 +157,51 @@ class DataGenerator:
         np.random.seed(42)
     
     def _salvar_dados_excel(self, df, nome_arquivo, sheet_name="Dados"):
-        """Salva DataFrame em arquivo Excel"""
+        """Salva DataFrame em arquivo Excel com verificações de segurança"""
         filepath = os.path.join(self.dados_directory, f"{nome_arquivo}.xlsx")
         
-        # Adicionar informações de metadados
-        with pd.ExcelWriter(filepath, engine='openpyxl') as writer:
-            df.to_excel(writer, sheet_name=sheet_name, index=False)
-            
-            # Criar planilha de metadados
-            metadata = pd.DataFrame({
-                'Informação': ['Data de Atualização', 'Total de Registros', 'Período dos Dados'],
-                'Valor': [
-                    self.data_atualizacao,
-                    len(df),
-                    f"{df['ano'].min()} - {df['ano'].max()}" if 'ano' in df.columns else "N/A"
-                ]
-            })
-            metadata.to_excel(writer, sheet_name="Metadados", index=False)
+        # Verificar se está no modo somente leitura
+        if MODO_SOMENTE_LEITURA:
+            if MOSTRAR_LOGS:
+                print(f"⚠️  AVISO: Modo somente leitura ativado. Não será possível salvar {nome_arquivo}.xlsx")
+            return None
         
-        return filepath
+        # Verificar se a criação de planilhas é permitida
+        if not PERMITIR_CRIACAO_PLANILHAS:
+            if MOSTRAR_LOGS:
+                print(f"⚠️  AVISO: Criação de planilhas desabilitada. Não será possível criar {nome_arquivo}.xlsx")
+            return None
+        
+        # Verificar se o arquivo já existe e se a sobrescrita é permitida
+        if os.path.exists(filepath) and not SOBRESCREVER_ARQUIVOS_EXISTENTES:
+            if MOSTRAR_LOGS:
+                print(f"⚠️  AVISO: Arquivo {nome_arquivo}.xlsx já existe e sobrescrita está desabilitada")
+            return None
+        
+        try:
+            # Adicionar informações de metadados
+            with pd.ExcelWriter(filepath, engine='openpyxl') as writer:
+                df.to_excel(writer, sheet_name=sheet_name, index=False)
+                
+                # Criar planilha de metadados
+                metadata = pd.DataFrame({
+                    'Informação': ['Data de Atualização', 'Total de Registros', 'Período dos Dados'],
+                    'Valor': [
+                        self.data_atualizacao,
+                        len(df),
+                        f"{df['ano'].min()} - {df['ano'].max()}" if 'ano' in df.columns else "N/A"
+                    ]
+                })
+                metadata.to_excel(writer, sheet_name="Metadados", index=False)
+            
+            if MOSTRAR_LOGS:
+                print(f"✅ Arquivo salvo com sucesso: {nome_arquivo}.xlsx")
+            return filepath
+            
+        except Exception as e:
+            if MOSTRAR_LOGS:
+                print(f"❌ Erro ao salvar {nome_arquivo}.xlsx: {str(e)}")
+            return None
     
     def _carregar_dados_excel(self, nome_arquivo, sheet_name="Dados"):
         """Carrega dados do arquivo Excel ou gera se não existir"""

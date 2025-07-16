@@ -113,7 +113,11 @@ ifpbcz-numeros/
 │   ├── dados_auditoria.xlsx
 │   └── dados_mundo_trabalho.xlsx
 ├── logo-ifpb/            # Logotipos institucionais
-└── figuras-modelo/       # Figuras de exemplo
+├── figuras-modelo/       # Figuras de exemplo
+├── config.py             # Configurações do sistema
+├── configurar_seguranca.py  # Script para alterar configurações
+├── testar_seguranca.py   # Script para testar configurações
+└── GUIA_ATUALIZACAO_DADOS.md  # Guia de atualização de dados
 ```
 
 ## 📊 Configuração de Dados
@@ -187,6 +191,41 @@ Edite `.streamlit/config.toml` para personalizar:
 - **Timestamp de atualização** em cada módulo
 - **Fallback para dados fictícios** quando arquivos não existem
 - **Validação de dados** com tratamento de erros
+- **Proteção contra criação acidental** de planilhas
+- **Modo somente leitura** para prevenir alterações
+
+## 🔒 Configurações de Segurança
+
+### Proteção de Dados
+
+O sistema inclui configurações de segurança no arquivo `config.py`:
+
+```python
+# Configurações de segurança
+PERMITIR_CRIACAO_PLANILHAS = False  # Impede criação automática de planilhas
+SOBRESCREVER_ARQUIVOS_EXISTENTES = False  # Impede sobrescrita acidental
+MODO_SOMENTE_LEITURA = True  # Modo somente leitura para proteção
+```
+
+### Configuração Recomendada para Produção
+
+```python
+USE_REAL_DATA = True  # Usar dados reais da instituição
+PERMITIR_CRIACAO_PLANILHAS = False  # Bloquear criação automática
+SOBRESCREVER_ARQUIVOS_EXISTENTES = False  # Proteger arquivos existentes
+MODO_SOMENTE_LEITURA = True  # Modo somente leitura
+VALIDAR_DADOS = True  # Validar dados ao carregar
+```
+
+### Habilitando Edição de Dados
+
+Para permitir a criação/edição de planilhas (apenas para desenvolvimento):
+
+```python
+PERMITIR_CRIACAO_PLANILHAS = True
+SOBRESCREVER_ARQUIVOS_EXISTENTES = True
+MODO_SOMENTE_LEITURA = False
+```
 
 ## 📚 Documentação
 
@@ -212,15 +251,36 @@ Cada módulo oferece:
 
 ### Processo de Atualização
 
-1. Substitua os arquivos Excel na pasta `dados/`
-2. Mantenha o formato das colunas conforme especificado
-3. Reinicie o sistema para carregar os novos dados
+1. **Verifique as configurações de segurança** no arquivo `config.py`
+2. **Faça backup** dos arquivos existentes
+3. **Substitua os arquivos Excel** na pasta `dados/`
+4. **Mantenha o formato das colunas** conforme especificado
+5. **Reinicie o sistema** para carregar os novos dados
+
+### Configurações de Segurança
+
+Por padrão, o sistema está configurado para **modo somente leitura** para prevenir alterações acidentais:
+
+- ✅ **Modo seguro**: Impede criação automática de planilhas
+- ✅ **Proteção de dados**: Não sobrescreve arquivos existentes  
+- ✅ **Somente leitura**: Previne alterações acidentais
+
+### Habilitando Edição (Desenvolvedor)
+
+Para permitir criação/edição de planilhas, altere no `config.py`:
+
+```python
+PERMITIR_CRIACAO_PLANILHAS = True
+SOBRESCREVER_ARQUIVOS_EXISTENTES = True
+MODO_SOMENTE_LEITURA = False
+```
 
 ### Validação
 
 - Verifique o formato antes de substituir arquivos
 - Consulte a página de Ajuda para especificações
 - Teste em ambiente de desenvolvimento
+- Monitore os logs para verificar se há avisos de segurança
 
 ## 🚀 Execução Avançada
 
@@ -234,6 +294,39 @@ streamlit run app.py --server.port 8502
 streamlit run app.py --server.address 0.0.0.0
 ```
 
+## 🛠️ Scripts de Gerenciamento
+
+### Configuração de Segurança
+
+**Alterar configurações de segurança:**
+
+```bash
+# Verificar configurações atuais
+python configurar_seguranca.py status
+
+# Ativar modo seguro (produção)
+python configurar_seguranca.py seguro
+
+# Ativar modo edição (desenvolvimento)
+python configurar_seguranca.py edicao
+```
+
+### Teste de Configurações
+
+**Testar configurações de segurança:**
+
+```bash
+# Executar teste completo
+python testar_seguranca.py
+```
+
+Este script verifica:
+
+- ✅ Carregamento das configurações
+- ✅ Funcionamento das proteções
+- ✅ Presença dos arquivos de dados
+- ✅ Logs de segurança
+
 ### Produção
 
 Para ambiente de produção considere:
@@ -245,11 +338,28 @@ Para ambiente de produção considere:
 
 ## ⚠️ Observações Importantes
 
-1. **Backup regular** dos dados Excel
-2. **Validação** do formato antes de substituir arquivos
-3. **Teste** em ambiente de desenvolvimento
-4. **Monitoramento** dos logs para detectar problemas
-5. **Atualização periódica** das dependências
+### Segurança dos Dados
+
+1. **Configurações de segurança** ativadas por padrão no `config.py`
+2. **Modo somente leitura** previne alterações acidentais
+3. **Backup regular** dos dados Excel antes de qualquer atualização
+4. **Validação** do formato antes de substituir arquivos
+5. **Teste** em ambiente de desenvolvimento
+
+### Operação do Sistema
+
+1. **Monitoramento** dos logs para detectar problemas
+2. **Atualização periódica** das dependências
+3. **Verificação** das configurações de segurança após atualizações
+4. **Documentação** de mudanças nas configurações
+
+### Mensagens de Segurança
+
+O sistema exibe avisos quando:
+
+- ⚠️ Tentativa de criação de planilhas com `PERMITIR_CRIACAO_PLANILHAS = False`
+- ⚠️ Tentativa de sobrescrita com `SOBRESCREVER_ARQUIVOS_EXISTENTES = False`
+- ⚠️ Operações bloqueadas no `MODO_SOMENTE_LEITURA = True`
 
 ## 📄 Licença
 

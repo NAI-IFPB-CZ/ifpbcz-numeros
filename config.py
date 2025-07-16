@@ -6,6 +6,13 @@ Para usar dados reais:
 2. Substitua os arquivos Excel na pasta 'dados/' pelos seus dados reais
 3. Altere USE_REAL_DATA para True
 4. Reinicie o sistema Streamlit
+
+Configurações de Segurança:
+- PERMITIR_CRIACAO_PLANILHAS: False (impede criação automática de planilhas)
+- SOBRESCREVER_ARQUIVOS_EXISTENTES: False (protege arquivos existentes)
+- MODO_SOMENTE_LEITURA: True (modo seguro, previne alterações acidentais)
+
+Para desenvolvimento/teste, você pode alterar essas configurações para True
 """
 
 # Configuração principal
@@ -22,3 +29,8 @@ CACHE_TIMEOUT = 3600  # Timeout do cache em segundos (1 hora)
 # Configurações de erro
 CONTINUAR_COM_ERRO = False  # Continuar execução mesmo com erros nos dados
 USAR_DADOS_BACKUP = True    # Usar dados sintéticos como backup se houver erro
+
+# Configurações de segurança
+PERMITIR_CRIACAO_PLANILHAS = False  # Permitir criação automática de planilhas Excel
+SOBRESCREVER_ARQUIVOS_EXISTENTES = False  # Permitir sobrescrever arquivos existentes
+MODO_SOMENTE_LEITURA = True  # Modo somente leitura - previne alterações acidentais
