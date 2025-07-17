@@ -450,6 +450,7 @@ from modules.servidores import servidores_module
 from modules.ouvidoria import ouvidoria_module
 from modules.auditoria import auditoria_module
 from modules.mundo_trabalho import mundo_trabalho_module
+from modules.mapa import mapa_module
 from modules.help_page import show_help
 
 def main():
@@ -564,7 +565,7 @@ def main():
     # Placeholders no topo
     st.sidebar.markdown("### 📋 Navegação")
     apresentacao = st.sidebar.button("📖 Apresentação")
-    mapa = st.sidebar.button("🗺️ Mapa")
+    mapa_button = st.sidebar.button("🗺️ Mapa dos Campus")
     ajuda = st.sidebar.button("❓ Ajuda")
     
     st.sidebar.markdown("---")
@@ -580,42 +581,57 @@ def main():
         ("👥 Servidores", "servidores"),
         ("📢 Ouvidoria", "ouvidoria"),
         ("🔍 Auditoria", "auditoria"),
-        ("💼 Mundo do Trabalho", "mundo_trabalho")
+        ("💼 Mundo do Trabalho", "mundo_trabalho"),
+        ("🗺️ Mapa dos Campus", "mapa")
     ]
     
     # Seleção do módulo
+    if 'modulo_selecionado' not in st.session_state:
+        st.session_state.modulo_selecionado = "ensino"
+    
+    # Verificar se o botão do mapa foi clicado
+    if mapa_button and st.session_state.modulo_selecionado != "mapa":
+        st.session_state.modulo_selecionado = "mapa"
+    
     modulo_selecionado = st.sidebar.selectbox(
         "Selecione o módulo:",
         options=[opcao[1] for opcao in opcoes_menu],
         format_func=lambda x: next(opcao[0] for opcao in opcoes_menu if opcao[1] == x),
-        index=0
+        index=[opcao[1] for opcao in opcoes_menu].index(st.session_state.modulo_selecionado) if st.session_state.modulo_selecionado in [opcao[1] for opcao in opcoes_menu] else 0,
+        key="selector_modulo"
     )
     
-    # Rodar o módulo selecionado
-    if modulo_selecionado == "ensino":
+    # Atualizar session state apenas se mudou via selectbox
+    if modulo_selecionado != st.session_state.modulo_selecionado:
+        st.session_state.modulo_selecionado = modulo_selecionado
+    
+    # Rodar o módulo selecionado (usar session state em vez da variável local)
+    modulo_ativo = st.session_state.modulo_selecionado
+    
+    if modulo_ativo == "ensino":
         ensino_module(data_gen)
-    elif modulo_selecionado == "assistencia":
+    elif modulo_ativo == "assistencia":
         assistencia_estudantil_module(data_gen)
-    elif modulo_selecionado == "pesquisa":
+    elif modulo_ativo == "pesquisa":
         pesquisa_module(data_gen)
-    elif modulo_selecionado == "extensao":
+    elif modulo_ativo == "extensao":
         extensao_module(data_gen)
-    elif modulo_selecionado == "orcamento":
+    elif modulo_ativo == "orcamento":
         orcamento_module(data_gen)
-    elif modulo_selecionado == "servidores":
+    elif modulo_ativo == "servidores":
         servidores_module(data_gen)
-    elif modulo_selecionado == "ouvidoria":
+    elif modulo_ativo == "ouvidoria":
         ouvidoria_module(data_gen)
-    elif modulo_selecionado == "auditoria":
+    elif modulo_ativo == "auditoria":
         auditoria_module(data_gen)
-    elif modulo_selecionado == "mundo_trabalho":
+    elif modulo_ativo == "mundo_trabalho":
         mundo_trabalho_module(data_gen)
+    elif modulo_ativo == "mapa":
+        mapa_module(data_gen)
     
     # Handlers para placeholders
     if apresentacao:
         st.info("🚧 Módulo de Apresentação em desenvolvimento")
-    if mapa:
-        st.info("🚧 Módulo de Mapa em desenvolvimento")
     if ajuda:
         show_help()
 

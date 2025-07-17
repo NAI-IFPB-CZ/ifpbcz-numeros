@@ -1,4 +1,5 @@
 # 📊 Guia Completo: Atualização de Dados Reais no Dashboard IFPB-CZ
+## leia tudo antes de qualquer coisa
 
 ## 🎯 Objetivo
 

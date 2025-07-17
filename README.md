@@ -35,17 +35,17 @@ cd ifpbcz-numeros
 2. **Crie um ambiente virtual (recomendado):**
 
 ```bash
-python -m venv venv
+python -m venv .venv
 ```
 
 3. **Ative o ambiente virtual:**
 
 ```bash
 # Windows:
-venv\Scripts\activate
+.venv\Scripts\activate
 
 # Linux/Mac:
-source venv/bin/activate
+source .venv/bin/activate
 ```
 
 4. **Instale as dependências:**
