@@ -27,3 +27,17 @@ Este documento explica como usar o sistema. Ele deve ser escrito em uma linguage
 > "O que significa o indicador 'Saldo de Admissões'?"
 
 > "Com quem devo entrar em contato se encontrar um problema?"
+
+# 2. Documentação Técnica (Para Desenvolvedores)
+Este documento explica como o sistema funciona por dentro, como mantê-lo e como estendê-lo. É o manual para a equipe de desenvolvimento.
+> **Importante**: Este documento deve ser escrito em uma linguagem técnica, com detalhes sobre a arquitetura, dependências e como contribuir. (já foi feito muita coisa, veja os arquivos na pasta `docs`, e os arquivos `README.md`, falta fazer algumas adequações e completar o que falta)
+
+## Configuração do Ambiente de Desenvolvimento:
+* Pré-requisitos: Versão do Python necessária (ex: Python 3.12+).
+* Clone do Repositório: Comando git clone ....
+* Ambiente Virtual: Instruções para criar e ativar um ambiente virtual (venv ou conda).
+* Instalação de Dependências: Como instalar todas as bibliotecas necessárias (ex: pip install -r requirements.txt).
+* Como Executar a Aplicação: O comando para rodar o servidor localmente (ex: streamlit run app.py).
+* Arquitetura e Estrutura do Projeto:
+Diagrama Simples: Um fluxograma mostrando: Fontes de Dados -> Scripts Python (Pandas/Streamlit) -> Interface Web.
+Estrutura de Pastas e Arquivos: Descreva a organização do código.

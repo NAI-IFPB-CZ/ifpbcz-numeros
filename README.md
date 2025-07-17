@@ -20,7 +20,7 @@ Sistema completo de dashboards para visualização de dados institucionais do IF
 
 ### Pré-requisitos
 
-- Python 3.8 ou superior
+- Python 3.12 ou superior
 - pip (gerenciador de pacotes Python)
 
 ### Instalação
@@ -288,7 +288,7 @@ MODO_SOMENTE_LEITURA = False
 
 ```bash
 # Porta personalizada
-streamlit run app.py --server.port 8502
+streamlit run app.py --server.port 8501
 
 # Acesso externo
 streamlit run app.py --server.address 0.0.0.0
