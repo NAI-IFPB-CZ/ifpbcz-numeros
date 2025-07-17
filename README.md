@@ -378,4 +378,4 @@ Contribuições são bem-vindas! Processo:
 ---
 
 **Sistema desenvolvido para o IFPB Campus Cajazeiras**  
-*Versão 2.0 - Suporte a dados Excel*
+*Versão 3.0 - Suporte a dados Excel*
