@@ -53,6 +53,14 @@ def mundo_trabalho_module(data_gen):
     
     st.markdown("---")
     
+    # Renderizar gráficos sintéticos
+    render_graficos_sinteticos(dados_trabalho)
+    
+
+
+def render_graficos_sinteticos(dados_trabalho):
+    """Renderiza gráficos para dados sintéticos antigos"""
+    
     # Gráfico 1: Evolução de Admissões/Desligamentos
     st.markdown('<div class="chart-container">', unsafe_allow_html=True)
     st.subheader("📈 Evolução de Admissões/Desligamentos")
