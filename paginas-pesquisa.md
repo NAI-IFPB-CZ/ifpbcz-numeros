@@ -1,5 +1,9 @@
 
 
+## documentação técnica do streamlit
+link: https://docs.streamlit.io/knowledge-base/tutorials/get-started/streamlit-tutorial
+link: https://docs.streamlit.io/develop/api-reference/configuration/config.toml
+
 ## KPI
 ### Definição de KPI
 
