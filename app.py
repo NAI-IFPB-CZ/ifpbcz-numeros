@@ -639,7 +639,7 @@ def main():
     col1, col2, col3 = st.columns([2, 10, 1])
     with col1:
         # Botão para alternar visibilidade da sidebar
-        if st.button("☰ Menu", help="Mostrar/ocultar menu", key="toggle_sidebar"):
+        if st.button("☰ Menu/Home", help="Mostrar/ocultar menu", key="toggle_sidebar"):
             # Alternar estado da sidebar
             if st.session_state.sidebar_state == 'expanded':
                 st.session_state.sidebar_state = 'collapsed'
@@ -778,16 +778,13 @@ def main():
 # ==============================================================================
 # PONTO DE ENTRADA DA APLICAÇÃO
 # ==============================================================================
+# PONTO DE ENTRADA DA APLICAÇÃO
+# ==============================================================================
 
 if __name__ == "__main__":
-    """
-    Ponto de entrada principal da aplicação.
-    
-    Executa a função main() apenas quando o script é executado diretamente,
-    não quando importado como módulo. Esta é uma boa prática em Python
-    para permitir que o código seja tanto executável quanto importável.
-    
-    Para executar a aplicação:
-    streamlit run app.py
-    """
+    # Ponto de entrada principal da aplicação.
+    # Executa a função main() apenas quando o script é executado diretamente,
+    # não quando importado como módulo. Esta é uma boa prática em Python
+    # para permitir que o código seja tanto executável quanto importável.
+    # Para executar a aplicação: streamlit run app.py
     main()
