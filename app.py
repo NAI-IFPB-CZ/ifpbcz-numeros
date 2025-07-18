@@ -1,33 +1,102 @@
-import streamlit as st
-import pandas as pd
-import numpy as np
-import plotly.express as px
-import plotly.graph_objects as go
-from wordcloud import WordCloud
-import matplotlib.pyplot as plt
-from datetime import datetime, timedelta
-import random
-import base64
-import os
+"""
+==============================================================================
+SISTEMA DASHBOARD IFPB-CZ - APLICAÇÃO PRINCIPAL
+==============================================================================
 
-# Função para converter imagem para base64
+Aplicação Streamlit para visualização de dados institucionais do
+Instituto Federal da Paraíba - Campus Cajazeiras (IFPB-CZ).
+
+Este sistema oferece dashboards interativos para acompanhamento de:
+- Dados de Ensino (matrículas, evasão, conclusões)
+- Assistência Estudantil (programas de auxílio e bolsas)
+- Pesquisa Científica (produção acadêmica e projetos)
+- Extensão Universitária (projetos e eventos comunitários)
+- Gestão Orçamentária (execução e planejamento financeiro)
+- Recursos Humanos (servidores docentes e técnicos)
+- Ouvidoria (manifestações e atendimento ao público)
+- Auditoria Interna (conformidade e controle)
+- Mundo do Trabalho (empregabilidade de egressos)
+- Mapeamento dos Campus (localização geográfica)
+
+Funcionalidades principais:
+- Interface responsiva com tema institucional verde/branco
+- Navegação por sidebar colapsível 
+- Gráficos interativos com Plotly
+- Dados sintéticos realistas para demonstração
+- Sistema de cache para otimização de performance
+- Configurações de segurança e controle de acesso
+
+Autor: Sistema NAI/IFPB-CZ
+Versão: 2.0 - Dashboard Institucional Completo
+Data: Julho 2025
+==============================================================================
+"""
+
+# ==============================================================================
+# IMPORTAÇÕES E DEPENDÊNCIAS
+# ==============================================================================
+import streamlit as st               # Framework principal da aplicação web
+import pandas as pd                  # Manipulação e análise de dados
+import numpy as np                   # Operações numéricas e arrays
+import plotly.express as px          # Gráficos interativos simplificados
+import plotly.graph_objects as go    # Gráficos interativos avançados
+from wordcloud import WordCloud      # Geração de nuvens de palavras
+import matplotlib.pyplot as plt      # Gráficos estáticos complementares
+from datetime import datetime, timedelta  # Manipulação de datas e períodos
+import random                        # Geração de números aleatórios
+import base64                        # Codificação de imagens para HTML
+import os                           # Operações do sistema operacional
+
+# ==============================================================================
+# FUNÇÕES UTILITÁRIAS PARA INTERFACE
+# ==============================================================================
+
 def get_base64_image(image_path):
-    """Converte imagem para base64"""
+    """
+    Converte imagem para formato base64 para incorporação em HTML.
+    
+    Esta função é essencial para exibir logos e imagens diretamente
+    no HTML gerado pelo Streamlit, evitando problemas de caminho
+    de arquivos em diferentes ambientes de deploy.
+    
+    Args:
+        image_path (str): Caminho para o arquivo de imagem
+        
+    Returns:
+        str: String base64 da imagem ou None se houver erro
+        
+    Example:
+        >>> base64_img = get_base64_image("logo-ifpb/IFPB-cz.png")
+        >>> # Usar em HTML: f'<img src="data:image/png;base64,{base64_img}">'
+    """
     try:
         with open(image_path, "rb") as img_file:
             return base64.b64encode(img_file.read()).decode()
     except:
         return None
 
-# Função para exibir logo no cabeçalho
 def display_header_with_logo(title):
-    """Exibe cabeçalho com logo do IFPB"""
+    """
+    Exibe cabeçalho estilizado com logo institucional do IFPB.
+    
+    Cria um cabeçalho visualmente atrativo com gradiente verde
+    (cores institucionais) e incorpora o logo do IFPB quando disponível.
+    Função preparada para uso futuro em páginas específicas.
+    
+    Args:
+        title (str): Título a ser exibido no cabeçalho
+        
+    Note:
+        Atualmente não utilizada na interface principal, mas mantida
+        para uso em módulos específicos que necessitem de cabeçalho customizado.
+    """
     logo_path = os.path.join("logo-ifpb", "IFPB-cz.png")
     
-    # Tentar carregar o logo
+    # Tentar carregar o logo do IFPB
     logo_base64 = get_base64_image(logo_path)
     
     if logo_base64:
+        # Cabeçalho com logo incorporado
         st.markdown(f"""
         <div class="main-header">
             <div class="header-logo">
@@ -37,25 +106,43 @@ def display_header_with_logo(title):
         </div>
         """, unsafe_allow_html=True)
     else:
+        # Cabeçalho sem logo (fallback)
         st.markdown(f'<div class="main-header">{title}</div>', unsafe_allow_html=True)
 
-# Configuração da página
+# ==============================================================================
+# CONFIGURAÇÃO INICIAL DA APLICAÇÃO STREAMLIT
+# ==============================================================================
+
+# Configurar propriedades básicas da página web
 st.set_page_config(
     page_title="Sistema de Visualização de Dados Institucionais - IFPB-CZ",
-    page_icon="📊",
-    layout="wide",
-    initial_sidebar_state="expanded",
-    menu_items={
+    page_icon="📊",                    # Ícone que aparece na aba do navegador
+    layout="wide",                     # Layout amplo para melhor uso do espaço
+    initial_sidebar_state="expanded",  # Sidebar aberta por padrão
+    menu_items={                       # Remover itens do menu padrão do Streamlit
         'Get Help': None,
         'Report a bug': None,
         'About': None
     }
 )
 
-# CSS customizado para tema verde e branco
+# ==============================================================================
+# ESTILOS CSS CUSTOMIZADOS - TEMA INSTITUCIONAL
+# ==============================================================================
+# Este bloco contém todo o CSS necessário para:
+# 1. Aplicar cores institucionais (verde IFPB)
+# 2. Remover elementos indesejados do Streamlit
+# 3. Garantir visibilidade do controle da sidebar
+# 4. Estilizar componentes (botões, inputs, cards)
+# 5. Criar responsividade e transições suaves
+
 st.markdown("""
 <style>
-    /* Esconder elementos padrão do Streamlit */
+    /* =================================================================
+       LIMPEZA DE INTERFACE - Remover elementos padrão do Streamlit
+       ================================================================= */
+    
+    /* Esconder menu hambúrguer e elementos de navegação padrão */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
@@ -70,7 +157,11 @@ st.markdown("""
     .stApp > div[data-testid="stDecoration"] {display: none;}
     .stApp > div[data-testid="stStatusWidget"] {display: none;}
     
-    /* Preservar botão de controle da sidebar */
+    /* =================================================================
+       CONTROLE DA SIDEBAR - Garantir funcionalidade do botão
+       ================================================================= */
+    
+    /* Preservar botão de controle da sidebar (quando colapsada) */
     button[data-testid="collapsedControl"] {
         display: block !important;
         visibility: visible !important;
@@ -79,7 +170,7 @@ st.markdown("""
         left: 0 !important;
         top: 0 !important;
         z-index: 999999 !important;
-        background-color: #1a8c73 !important;
+        background-color: #1a8c73 !important;  /* Verde institucional */
         color: white !important;
         border: none !important;
         padding: 0.5rem !important;
@@ -97,7 +188,7 @@ st.markdown("""
         border: none !important;
     }
     
-    /* Esconder botão de fork */
+    /* Esconder elementos desnecessários */
     .stAppViewContainer > .main > div[data-testid="stToolbar"] {
         display: none;
     }
@@ -107,87 +198,57 @@ st.markdown("""
         display: none !important;
     }
     
-    /* Esconder elementos de debug */
-    .stException {display: none;}
-    .stAlert {display: none;}
+    /* =================================================================
+       TEMA VISUAL - Cores institucionais e layout
+       ================================================================= */
     
-    /* Garantir que o botão de controle da sidebar sempre seja visível */
-    .stSidebar .stButton button,
-    [data-testid="collapsedControl"],
-    [data-testid="baseButton-header"],
-    .stSidebar button[kind="header"] {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        pointer-events: all !important;
-    }
+    /* =================================================================
+       TEMA VISUAL - Cores institucionais e layout
+       ================================================================= */
     
-    /* Estilo específico para o botão de colapsar quando sidebar está fechada */
-    [data-testid="collapsedControl"] {
-        position: fixed !important;
-        left: 0 !important;
-        top: 0 !important;
-        z-index: 999999 !important;
-        background-color: #1a8c73 !important;
-        color: white !important;
-        border: none !important;
-        padding: 0.5rem 0.75rem !important;
-        border-radius: 0 0 0.5rem 0 !important;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.3) !important;
-    }
-    
-    /* Hover do botão de controle */
-    [data-testid="collapsedControl"]:hover {
-        background-color: #0d5a4e !important;
-        transform: scale(1.05) !important;
-        transition: all 0.2s ease !important;
-    }
-    
-    /* Customizar aparência da página */
+    /* Fundo principal da aplicação */
     .stApp {
-        background-color: #f8f9fa;
+        background-color: #f8f9fa;  /* Cinza muito claro para contraste */
     }
     
-    /* Garantir que todos os elementos de fundo sejam brancos */
+    /* Container principal */
     .main .block-container {
         background-color: #f8f9fa;
         padding: 2rem;
     }
     
+    /* Sidebar com fundo branco */
     section[data-testid="stSidebar"] {
         background-color: #ffffff;
         border-right: 1px solid #e0e0e0;
     }
     
+    /* =================================================================
+       COMPONENTES DE FORMULÁRIO - Inputs, selects, botões
+       ================================================================= */
+    
+    /* Caixas de seleção (selectbox) */
     .stSelectbox > div > div {
         background-color: white;
         border: 1px solid #ddd;
         border-radius: 4px;
     }
     
-    /* Adicionar estilos para melhorar contraste */
-    .stSelectbox > div > div > div {
-        background-color: white !important;
-        border: 1px solid #ddd !important;
-        border-radius: 4px !important;
-    }
-    
+    /* Seleção múltipla (multiselect) */
     .stMultiSelect > div > div > div {
         background-color: white !important;
         border: 1px solid #ddd !important;
         border-radius: 4px !important;
     }
     
-    .stSlider > div > div > div {
-        background-color: white !important;
-    }
-    
+    /* Campos de entrada de texto */
     .stTextInput > div > div > input {
         background-color: white !important;
         border: 1px solid #ddd !important;
         border-radius: 4px !important;
     }
     
+    /* Campos numéricos */
     .stNumberInput > div > div > input {
         background-color: white !important;
         border: 1px solid #ddd !important;
@@ -439,37 +500,71 @@ observer.observe(document.body, { childList: true, subtree: true });
 </script>
 """, unsafe_allow_html=True)
 
-# Importar módulos
+# ==============================================================================
+# IMPORTAÇÃO DOS MÓDULOS DA APLICAÇÃO
+# ==============================================================================
+# Importar o gerador de dados e todos os módulos de dashboard específicos
+
+# Gerador de dados sintéticos para todos os módulos
 from modules.data_generator import DataGenerator
-from modules.ensino import ensino_module
-from modules.assistencia_estudantil import assistencia_estudantil_module
-from modules.pesquisa import pesquisa_module
-from modules.extensao import extensao_module
-from modules.orcamento import orcamento_module
-from modules.servidores import servidores_module
-from modules.ouvidoria import ouvidoria_module
-from modules.auditoria import auditoria_module
-from modules.mundo_trabalho import mundo_trabalho_module
-from modules.mapa import mapa_module
-from modules.help_page import show_help
+
+# Módulos de dashboard por área institucional
+from modules.ensino import ensino_module                           # Dados acadêmicos
+from modules.assistencia_estudantil import assistencia_estudantil_module  # Programas de auxílio
+from modules.pesquisa import pesquisa_module                       # Produção científica
+from modules.extensao import extensao_module                       # Projetos de extensão
+from modules.orcamento import orcamento_module                     # Gestão financeira
+from modules.servidores import servidores_module                   # Recursos humanos
+from modules.ouvidoria import ouvidoria_module                     # Atendimento público
+from modules.auditoria import auditoria_module                     # Controle interno
+from modules.mundo_trabalho import mundo_trabalho_module           # Empregabilidade
+from modules.mapa import mapa_module                               # Localização geográfica
+from modules.help_page import show_help                            # Página de ajuda
+
+# ==============================================================================
+# FUNÇÃO PRINCIPAL DA APLICAÇÃO
+# ==============================================================================
 
 def main():
-    # Inicializar estado da sessão para controle da sidebar
+    """
+    Função principal que controla toda a aplicação dashboard.
+    
+    Responsabilidades:
+    1. Gerenciar estado da sidebar (expandida/colapsada)
+    2. Aplicar estilos CSS dinâmicos
+    3. Controlar navegação entre módulos
+    4. Inicializar gerador de dados
+    5. Renderizar interface da sidebar
+    6. Rotear para módulo selecionado
+    7. Gerenciar ações de botões especiais (apresentação, ajuda)
+    
+    A função utiliza st.session_state para manter persistência
+    de configurações entre recarregamentos da página.
+    """
+    
+    # Inicializar controle de estado da sidebar
+    # Permite alternar entre sidebar expandida/colapsada
     if 'sidebar_state' not in st.session_state:
         st.session_state.sidebar_state = 'expanded'
     
-    # CSS para controle da sidebar baseado no estado da sessão
+    # ==================================================================
+    # APLICAÇÃO DE ESTILOS CSS DINÂMICOS BASEADOS NO ESTADO DA SIDEBAR
+    # ==================================================================
+    
+    # Aplicar CSS específico quando sidebar está colapsada
     if st.session_state.sidebar_state == 'collapsed':
         st.markdown("""
         <style>
+        /* Esconder sidebar completamente */
         .stSidebar {
             display: none !important;
         }
+        /* Expandir área principal para ocupar toda a largura */
         .main .block-container {
             margin-left: 0 !important;
             max-width: 100% !important;
         }
-        /* Estilo do botão Menu */
+        /* Estilizar botão Menu quando sidebar está escondida */
         div[data-testid="column"]:first-child button[key="toggle_sidebar"] {
             background-color: #1a8c73 !important;
             color: white !important;
@@ -484,16 +579,19 @@ def main():
         </style>
         """, unsafe_allow_html=True)
     else:
+        # CSS quando sidebar está expandida (estado normal)
         st.markdown("""
         <style>
+        /* Mostrar sidebar normalmente */
         .stSidebar {
             display: block !important;
         }
+        /* Ajustar margem da área principal para acomodar sidebar */
         .main .block-container {
             margin-left: 21rem !important;
             max-width: calc(100% - 21rem) !important;
         }
-        /* Estilo do botão Menu */
+        /* Estilizar botão Menu quando sidebar está visível */
         div[data-testid="column"]:first-child button[key="toggle_sidebar"] {
             background-color: #1a8c73 !important;
             color: white !important;
@@ -508,10 +606,11 @@ def main():
         </style>
         """, unsafe_allow_html=True)
     
-    # CSS adicional para estilizar o botão Menu
+    # CSS adicional para garantir estilização consistente do botão Menu
+    # Independente do estado da sidebar
     st.markdown("""
     <style>
-    /* Estilo específico para o botão Menu */
+    /* Estilo específico para o botão Menu em todos os estados */
     button[data-testid="baseButton-secondary"] {
         background-color: #1a8c73 !important;
         color: white !important;
@@ -532,24 +631,39 @@ def main():
     </style>
     """, unsafe_allow_html=True)
     
-    # Botão para controle da sidebar
+    # ==================================================================
+    # CONTROLE DE INTERFACE - Botão de toggle da sidebar
+    # ==================================================================
+    
+    # Criar layout de 3 colunas para posicionar o botão Menu
     col1, col2, col3 = st.columns([2, 10, 1])
     with col1:
+        # Botão para alternar visibilidade da sidebar
         if st.button("☰ Menu", help="Mostrar/ocultar menu", key="toggle_sidebar"):
+            # Alternar estado da sidebar
             if st.session_state.sidebar_state == 'expanded':
                 st.session_state.sidebar_state = 'collapsed'
             else:
                 st.session_state.sidebar_state = 'expanded'
+            # Forçar recarregamento da página para aplicar mudanças
             st.rerun()
     
-    # Gerar dados
+    # ==================================================================
+    # INICIALIZAÇÃO DO GERADOR DE DADOS
+    # ==================================================================
+    
+    # Instanciar o gerador de dados sintéticos para todos os módulos
     data_gen = DataGenerator()
     
-    # Sidebar - Menu Principal
+    # ==================================================================
+    # CONFIGURAÇÃO E CONTEÚDO DA SIDEBAR
+    # ==================================================================
+    
+    # Preparar logo institucional para exibição
     logo_path = os.path.join("logo-ifpb", "IFPB-cz.png")
     logo_base64 = get_base64_image(logo_path)
     
-    # Adicionar logo na sidebar
+    # Exibir logo do IFPB na sidebar quando disponível
     if logo_base64:
         st.sidebar.markdown(f"""
         <div style="text-align: center; margin-bottom: 2rem;">
@@ -559,81 +673,121 @@ def main():
         </div>
         """, unsafe_allow_html=True)
     
+    # Título principal da sidebar
     st.sidebar.title("📊 Sistema Institucional")
     st.sidebar.markdown("---")
     
-    # Placeholders no topo
+    # ==================================================================
+    # SEÇÃO DE NAVEGAÇÃO ESPECIAL - Botões de ação rápida
+    # ==================================================================
+    
     st.sidebar.markdown("### 📋 Navegação")
+    # Botões para funcionalidades especiais (ainda em desenvolvimento)
     apresentacao = st.sidebar.button("📖 Apresentação")
-    mapa_button = st.sidebar.button("🗺️ Mapa dos Campus")
+    mapa_button = st.sidebar.button("🗺️ Mapa dos Campus") 
     ajuda = st.sidebar.button("❓ Ajuda")
     
     st.sidebar.markdown("---")
     st.sidebar.markdown("### 📊 Dashboards")
     
-    # Menu principal com ordem específica
+    # ==================================================================
+    # DEFINIÇÃO DOS MÓDULOS DISPONÍVEIS
+    # ==================================================================
+    
+    # Lista ordenada de todos os módulos de dashboard com ícones e identificadores
     opcoes_menu = [
-        ("🎓 Ensino", "ensino"),
-        ("🤝 Assistência Estudantil", "assistencia"),
-        ("🔬 Pesquisa", "pesquisa"),
-        ("🌟 Extensão", "extensao"),
-        ("💰 Orçamento", "orcamento"),
-        ("👥 Servidores", "servidores"),
-        ("📢 Ouvidoria", "ouvidoria"),
-        ("🔍 Auditoria", "auditoria"),
-        ("💼 Mundo do Trabalho", "mundo_trabalho"),
-        ("🗺️ Mapa dos Campus", "mapa")
+        ("🎓 Ensino", "ensino"),                    # Dados acadêmicos
+        ("🤝 Assistência Estudantil", "assistencia"), # Programas de auxílio
+        ("🔬 Pesquisa", "pesquisa"),                # Produção científica
+        ("🌟 Extensão", "extensao"),                # Projetos comunitários
+        ("💰 Orçamento", "orcamento"),              # Gestão financeira
+        ("👥 Servidores", "servidores"),            # Recursos humanos
+        ("📢 Ouvidoria", "ouvidoria"),              # Atendimento público
+        ("🔍 Auditoria", "auditoria"),              # Controle interno
+        ("💼 Mundo do Trabalho", "mundo_trabalho"), # Empregabilidade
+        ("🗺️ Mapa dos Campus", "mapa")             # Localização geográfica
     ]
     
-    # Seleção do módulo
-    if 'modulo_selecionado' not in st.session_state:
-        st.session_state.modulo_selecionado = "ensino"
+    # ==================================================================
+    # CONTROLE DE ESTADO DE NAVEGAÇÃO
+    # ==================================================================
     
-    # Verificar se o botão do mapa foi clicado
+    # Inicializar módulo padrão se não existir no estado da sessão
+    if 'modulo_selecionado' not in st.session_state:
+        st.session_state.modulo_selecionado = "ensino"  # Módulo de Ensino como padrão
+    
+    # Verificar se botão direto do mapa foi clicado (navegação especial)
     if mapa_button and st.session_state.modulo_selecionado != "mapa":
         st.session_state.modulo_selecionado = "mapa"
     
+    # Widget de seleção principal de módulos na sidebar
     modulo_selecionado = st.sidebar.selectbox(
         "Selecione o módulo:",
-        options=[opcao[1] for opcao in opcoes_menu],
-        format_func=lambda x: next(opcao[0] for opcao in opcoes_menu if opcao[1] == x),
+        options=[opcao[1] for opcao in opcoes_menu],  # IDs dos módulos
+        format_func=lambda x: next(opcao[0] for opcao in opcoes_menu if opcao[1] == x),  # Nomes com ícones
         index=[opcao[1] for opcao in opcoes_menu].index(st.session_state.modulo_selecionado) if st.session_state.modulo_selecionado in [opcao[1] for opcao in opcoes_menu] else 0,
         key="selector_modulo"
     )
     
-    # Atualizar session state apenas se mudou via selectbox
+    # Atualizar estado da sessão apenas se módulo mudou via selectbox
     if modulo_selecionado != st.session_state.modulo_selecionado:
         st.session_state.modulo_selecionado = modulo_selecionado
     
-    # Rodar o módulo selecionado (usar session state em vez da variável local)
+    # ==================================================================
+    # ROTEAMENTO PARA MÓDULOS - Executar módulo selecionado
+    # ==================================================================
+    
+    # Usar estado da sessão para garantir persistência entre recarregamentos
     modulo_ativo = st.session_state.modulo_selecionado
     
+    # Router principal - direcionar para função específica de cada módulo
     if modulo_ativo == "ensino":
-        ensino_module(data_gen)
+        ensino_module(data_gen)                    # Dashboard de dados acadêmicos
     elif modulo_ativo == "assistencia":
-        assistencia_estudantil_module(data_gen)
+        assistencia_estudantil_module(data_gen)    # Dashboard de assistência estudantil
     elif modulo_ativo == "pesquisa":
-        pesquisa_module(data_gen)
+        pesquisa_module(data_gen)                  # Dashboard de pesquisa científica
     elif modulo_ativo == "extensao":
-        extensao_module(data_gen)
+        extensao_module(data_gen)                  # Dashboard de extensão universitária
     elif modulo_ativo == "orcamento":
-        orcamento_module(data_gen)
+        orcamento_module(data_gen)                 # Dashboard de gestão orçamentária
     elif modulo_ativo == "servidores":
-        servidores_module(data_gen)
+        servidores_module(data_gen)                # Dashboard de recursos humanos
     elif modulo_ativo == "ouvidoria":
-        ouvidoria_module(data_gen)
+        ouvidoria_module(data_gen)                 # Dashboard de ouvidoria
     elif modulo_ativo == "auditoria":
-        auditoria_module(data_gen)
+        auditoria_module(data_gen)                 # Dashboard de auditoria interna
     elif modulo_ativo == "mundo_trabalho":
-        mundo_trabalho_module(data_gen)
+        mundo_trabalho_module(data_gen)            # Dashboard de empregabilidade
     elif modulo_ativo == "mapa":
-        mapa_module(data_gen)
+        mapa_module(data_gen)                      # Visualização geográfica dos campus
     
-    # Handlers para placeholders
+    # ==================================================================
+    # HANDLERS PARA AÇÕES ESPECIAIS DA SIDEBAR
+    # ==================================================================
+    
+    # Processar cliques nos botões de navegação especial
     if apresentacao:
+        # Módulo de apresentação ainda em desenvolvimento
         st.info("🚧 Módulo de Apresentação em desenvolvimento")
+        
     if ajuda:
+        # Exibir página de ajuda do sistema
         show_help()
 
+# ==============================================================================
+# PONTO DE ENTRADA DA APLICAÇÃO
+# ==============================================================================
+
 if __name__ == "__main__":
+    """
+    Ponto de entrada principal da aplicação.
+    
+    Executa a função main() apenas quando o script é executado diretamente,
+    não quando importado como módulo. Esta é uma boa prática em Python
+    para permitir que o código seja tanto executável quanto importável.
+    
+    Para executar a aplicação:
+    streamlit run app.py
+    """
     main()
