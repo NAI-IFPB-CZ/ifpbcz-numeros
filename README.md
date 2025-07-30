@@ -2,7 +2,7 @@
 
 ## 📋 Visão Geral
 
-Sistema completo de dashboards para visualização de dados institucionais do IFPB Campus Cajazeiras, desenvolvido com Streamlit e Python. O sistema inclui 9 módulos principais e suporte a dados em formato Excel.
+Sistema completo de dashboards para visualização de dados institucionais do IFPB Campus Cajazeiras, desenvolvido com Streamlit e Python. O sistema inclui 10 módulos principais, sistema de ajuda integrado, apresentação institucional e suporte a dados em formato Excel.
 
 ## 📊 Módulos Disponíveis
 
@@ -15,6 +15,13 @@ Sistema completo de dashboards para visualização de dados institucionais do IF
 7. **📢 Ouvidoria** - Manifestações e atendimentos
 8. **🔍 Auditoria** - Auditorias e recomendações
 9. **💼 Mundo do Trabalho** - Inserção profissional de egressos
+10. **🗺️ Mapa dos Campus** - Localização geográfica dos campus do IFPB
+
+## 🎯 Recursos Especiais
+
+- **📖 Apresentação Institucional** - Apresentação completa do IFPB-CZ e do sistema
+- **❓ Sistema de Ajuda** - Documentação integrada com guias detalhados
+- **🗺️ Mapeamento Interativo** - Visualização dos 25 campus do IFPB na Paraíba
 
 ## 🚀 Instalação e Configuração
 
@@ -86,13 +93,18 @@ Abra seu navegador e acesse `http://localhost:8501`
 ifpbcz-numeros/
 ├── app.py                 # Aplicação principal
 ├── requirements.txt       # Dependências
-├── README.md             # Documentação
+├── README.md             # Documentação principal
+├── LICENSE               # Licença do projeto
 ├── .streamlit/
 │   └── config.toml       # Configurações do Streamlit
 ├── modules/
-│   ├── data_generator.py  # Gerador e leitor de dados
+│   ├── __init__.py       # Inicializador do módulo
+│   ├── data_generator.py  # Gerador de dados sintéticos
+│   ├── data_generator_real.py  # Gerador de dados reais
 │   ├── utils.py          # Funções utilitárias
-│   ├── help_page.py      # Página de ajuda
+│   ├── help_page.py      # Sistema de ajuda integrado
+│   ├── presentation.py   # Apresentação institucional
+│   ├── mapa.py           # Módulo de mapeamento
 │   ├── ensino.py         # Módulo de Ensino
 │   ├── assistencia_estudantil.py  # Módulo de Assistência
 │   ├── pesquisa.py       # Módulo de Pesquisa
@@ -101,7 +113,8 @@ ifpbcz-numeros/
 │   ├── servidores.py     # Módulo de Servidores
 │   ├── ouvidoria.py      # Módulo de Ouvidoria
 │   ├── auditoria.py      # Módulo de Auditoria
-│   └── mundo_trabalho.py # Módulo Mundo do Trabalho
+│   ├── mundo_trabalho.py # Módulo Mundo do Trabalho
+│   └── formata_xlsx.py   # Formatação de arquivos Excel
 ├── dados/                # Arquivos Excel com dados
 │   ├── dados_ensino.xlsx
 │   ├── dados_assistencia.xlsx
@@ -112,12 +125,23 @@ ifpbcz-numeros/
 │   ├── dados_ouvidoria.xlsx
 │   ├── dados_auditoria.xlsx
 │   └── dados_mundo_trabalho.xlsx
+├── docs/                 # Documentação técnica
+│   ├── diagrama_fluxo_sistema.md
+│   ├── especificacao-excel.md
+│   ├── guia-usuario-final.md
+│   └── documentacao_tecnica.md
+├── fluxo/                # Diagramas de fluxo do sistema
 ├── logo-ifpb/            # Logotipos institucionais
-├── figuras-modelo/       # Figuras de exemplo
 ├── config.py             # Configurações do sistema
 ├── configurar_seguranca.py  # Script para alterar configurações
 ├── testar_seguranca.py   # Script para testar configurações
-└── GUIA_ATUALIZACAO_DADOS.md  # Guia de atualização de dados
+├── criar_planilhas_exemplo.py  # Script para criar dados de exemplo
+├── criar_planilhas_exemplo_real.py  # Script para dados reais
+├── test_dados_reais.py   # Testes de dados reais
+├── test_extensao.py      # Testes do módulo extensão
+├── GUIA_ATUALIZACAO_DADOS.md  # Guia de atualização de dados
+├── MODULO_MAPA.md        # Documentação do módulo mapa
+└── paginas-pesquisa.md   # Documentação das páginas de pesquisa
 ```
 
 ## 📊 Configuração de Dados
@@ -193,6 +217,39 @@ Edite `.streamlit/config.toml` para personalizar:
 - **Validação de dados** com tratamento de erros
 - **Proteção contra criação acidental** de planilhas
 - **Modo somente leitura** para prevenir alterações
+- **Sistema de ajuda integrado** com documentação completa
+- **Apresentação institucional** com informações do IFPB-CZ
+- **Mapeamento interativo** dos campus do IFPB
+
+## 📚 Documentação Técnica
+
+O projeto inclui documentação abrangente na pasta `docs/`:
+
+### Documentos Disponíveis
+
+- **`diagrama_fluxo_sistema.md`** - Diagramas de fluxo do sistema com imagens
+- **`especificacao-excel.md`** - Especificações técnicas dos arquivos Excel
+- **`guia-usuario-final.md`** - Guia completo para usuários finais
+- **`documentacao_tecnica.md`** - Documentação técnica detalhada
+
+### Sistema de Ajuda Integrado
+
+Acesse através do botão **"❓ Ajuda"** no sistema:
+
+- **Guia do Usuário** - Como navegar e usar o sistema
+- **Formato dos Dados Excel** - Especificações detalhadas por módulo
+- **FAQ** - Perguntas frequentes e soluções
+- **Contato e Suporte** - Informações de contato e suporte técnico
+
+### Apresentação Institucional
+
+Acesse através do botão **"📖 Apresentação"** no sistema:
+
+- **🏛️ Institucional** - Missão, visão e valores do IFPB-CZ
+- **📊 O Sistema** - Tecnologias e arquitetura
+- **🎯 Funcionalidades** - Detalhamento dos módulos
+- **📈 Benefícios** - Impactos e diferenciais
+- **🚀 Próximos Passos** - Roadmap e evolução
 
 ## 🔒 Configurações de Segurança
 
@@ -378,4 +435,24 @@ Contribuições são bem-vindas! Processo:
 ---
 
 **Sistema desenvolvido para o IFPB Campus Cajazeiras**  
-*Versão 3.0 - Suporte a dados Excel*
+*Versão 2.0 - Dashboard Institucional Completo*  
+*Julho 2025*
+
+### 🏆 Características da Versão Atual
+
+- ✅ **10 módulos** de dashboard funcionais
+- ✅ **Sistema de ajuda** integrado com 4 seções
+- ✅ **Apresentação institucional** completa em 5 tabs
+- ✅ **Mapeamento interativo** dos 25 campus do IFPB
+- ✅ **Documentação técnica** abrangente
+- ✅ **Sistema de segurança** robusto
+- ✅ **Interface responsiva** para todos os dispositivos
+- ✅ **Dados sintéticos** para demonstração
+- ✅ **Suporte a dados reais** via arquivos Excel
+
+### 📧 Contato
+
+**Núcleo de Assessoria em Informação (NAI)**  
+IFPB Campus Cajazeiras  
+📧 nai.cajazeiras@ifpb.edu.br  
+📞 (83) 3532-4100 (Ramal: 4120)
