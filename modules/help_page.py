@@ -1,11 +1,148 @@
+"""
+=============================================================================
+MÓDULO DE AJUDA E SUPORTE - SISTEMA DASHBOARD IFPB-CZ
+=============================================================================
+
+Este módulo implementa o sistema completo de ajuda e suporte para usuários
+do Dashboard IFPB-CZ, fornecendo documentação abrangente, guias de uso,
+especificações técnicas e canais de contato organizados em interface
+interativa com navegação por abas.
+
+FUNCIONALIDADES PRINCIPAIS:
+---------------------------
+- Sistema de ajuda multi-seção com navegação por abas
+- Guia completo do usuário com instruções detalhadas
+- Especificações técnicas de formato de dados Excel
+- Seção de perguntas frequentes (FAQ) organizada por temas
+- Informações de contato e suporte técnico institucional
+- Recursos de treinamento e capacitação disponíveis
+
+ESTRUTURA DE NAVEGAÇÃO:
+-----------------------
+1. Guia do Usuário - Manual completo de operação do sistema
+2. Formato dos Dados Excel - Especificações técnicas detalhadas
+3. Perguntas Frequentes - FAQ organizado por categorias
+4. Contato e Suporte - Informações institucionais e canais
+
+CONTEÚDO DO GUIA DO USUÁRIO:
+----------------------------
+- Visão geral do sistema e objetivos institucionais
+- Primeiros passos e interface de navegação
+- Guia detalhado de todos os 9 módulos funcionais
+- Instruções de uso de filtros e interação com gráficos
+- Orientações para interpretação de visualizações
+
+ESPECIFICAÇÕES TÉCNICAS:
+-------------------------
+- Formatos de arquivos Excel (.xlsx) por módulo
+- Estrutura de planilhas e colunas obrigatórias
+- Tipos de dados, exemplos práticos e observações
+- Instruções de implementação e atualização
+- Orientações de encoding e formatação
+
+PERGUNTAS FREQUENTES:
+---------------------
+- Atualização e sincronização de dados
+- Exportação e impressão de relatórios
+- Resolução de problemas técnicos comuns
+- Compatibilidade de dispositivos e navegadores
+- Segurança, acesso e interpretação de métricas
+
+SUPORTE E CONTATO:
+------------------
+- Informações institucionais completas do IFPB-CZ
+- Canais de suporte técnico especializados (NAI/CTI)
+- Procedimentos para relato de problemas e emergências
+- Programas de treinamento e capacitação disponíveis
+- Recursos adicionais e documentação técnica
+
+CARACTERÍSTICAS TÉCNICAS:
+--------------------------
+- Interface responsiva com sistema de abas interativo
+- Documentação estruturada em markdown formatado
+- Integração com componentes visuais padronizados
+- Organização hierárquica de informações por complexidade
+- Sistema de templates para comunicação de suporte
+
+OBJETIVO:
+---------
+Fornecer suporte completo e autônomo aos usuários do sistema,
+reduzindo necessidade de suporte técnico direto através de
+documentação abrangente, exemplos práticos e orientações
+claras para resolução independente de problemas comuns.
+
+DEPENDÊNCIAS:
+-------------
+- streamlit: Interface web e componentes interativos
+- utils: Funções de cabeçalho e rodapé padronizados
+
+AUTOR: Sistema Dashboard IFPB-CZ - NAI
+DATA: 2024
+=============================================================================
+"""
+
 import streamlit as st
 from .utils import display_header_with_logo, display_footer
 
 def show_help():
-    """Página de ajuda completa para usuários do sistema"""
+    """
+    Exibição do sistema completo de ajuda com navegação por abas.
     
+    Esta função implementa o centro de ajuda e suporte do Dashboard IFPB-CZ,
+    organizando documentação abrangente em interface interativa com quatro
+    seções principais: guia do usuário, especificações técnicas, FAQ
+    e informações de contato e suporte institucional.
+    
+    ESTRUTURA DE NAVEGAÇÃO:
+    - Tab 1: Guia do Usuário (manual completo de operação)
+    - Tab 2: Formato dos Dados Excel (especificações técnicas)
+    - Tab 3: Perguntas Frequentes (FAQ organizado por temas)
+    - Tab 4: Contato e Suporte (canais institucionais)
+    
+    CONTEÚDO ABRANGENTE:
+    - Instruções detalhadas para todos os 9 módulos do sistema
+    - Especificações completas de 9 arquivos Excel de dados
+    - FAQ com 25+ perguntas organizadas em 6 categorias temáticas
+    - Informações de contato para NAI, CTI e suporte emergencial
+    - Recursos de treinamento, documentação e tutoriais
+    
+    OBJETIVO DA INTERFACE:
+    Proporcionar experiência de suporte autônomo permitindo que
+    usuários encontrem rapidamente informações específicas sem
+    necessidade de contato direto com equipe técnica para questões
+    rotineiras, melhorando eficiência operacional do sistema.
+    
+    PÚBLICO-ALVO:
+    - Gestores institucionais (diretores, coordenadores)
+    - Comunidade acadêmica (professores, técnicos, estudantes)
+    - Usuários técnicos responsáveis por alimentação de dados
+    - Público externo com acesso às informações institucionais
+    
+    PARÂMETROS:
+    -----------
+    Nenhum
+        Função de renderização com estrutura de navegação fixa
+        
+    RETORNO:
+    --------
+    None
+        Exibe sistema de ajuda completo via interface Streamlit
+        
+    ELEMENTOS DA INTERFACE:
+    - Cabeçalho: display_header_with_logo() com título específico
+    - Navegação: st.tabs() com 4 seções organizadas
+    - Conteúdo: funções especializadas para cada seção
+    - Rodapé: display_footer() para consistência visual
+    """
+    
+    # ============= RENDERIZAÇÃO DO CABEÇALHO INSTITUCIONAL =============
+    # Exibição do cabeçalho padronizado com logotipo e título específico
+    # Mantém consistência visual com outras páginas do sistema
     display_header_with_logo("Sistema de Ajuda - Dashboard IFPB-CZ")
     
+    # ============= SISTEMA DE NAVEGAÇÃO POR ABAS =============
+    # Interface organizada em 4 seções principais para facilitar localização
+    # de informações específicas conforme necessidade do usuário
     # Menu de navegação da ajuda
     tab1, tab2, tab3, tab4 = st.tabs([
         "📋 Guia do Usuário", 
@@ -14,6 +151,9 @@ def show_help():
         "📞 Contato e Suporte"
     ])
     
+    # ============= RENDERIZAÇÃO DO CONTEÚDO POR SEÇÕES =============
+    # Cada aba carrega função especializada para conteúdo específico
+    # Organização modular facilita manutenção e atualizações
     with tab1:
         show_user_guide()
     
@@ -26,11 +166,70 @@ def show_help():
     with tab4:
         show_contact_support()
     
+    # ============= RENDERIZAÇÃO DO RODAPÉ INSTITUCIONAL =============
+    # Finalização da página com rodapé padronizado para consistência
     display_footer()
 
 def show_user_guide():
-    """Guia completo para usuários do sistema"""
+    """
+    Apresentação do guia completo para usuários do sistema.
     
+    Esta função renderiza documentação abrangente sobre operação
+    do Dashboard IFPB-CZ, incluindo visão geral institucional,
+    instruções de navegação, guias específicos dos 9 módulos
+    funcionais e orientações para interpretação de dados.
+    
+    CONTEÚDO ESTRUTURADO:
+    - Visão geral: objetivos, usuários-alvo e funcionalidades
+    - Primeiros passos: acesso, interface e controles básicos
+    - Guia dos módulos: instruções específicas para cada um dos 9 módulos
+    - Uso de filtros: seleção temporal, específica e interação
+    - Interpretação: orientações para leitura de gráficos e visualizações
+    
+    MÓDULOS DOCUMENTADOS:
+    1. Ensino - Indicadores educacionais e desempenho acadêmico
+    2. Assistência Estudantil - Programas de apoio e benefícios
+    3. Pesquisa - Projetos científicos e produção acadêmica  
+    4. Extensão - Ações comunitárias e interação externa
+    5. Orçamento - Gestão financeira e execução orçamentária
+    6. Servidores - Recursos humanos e quadro funcional
+    7. Ouvidoria - Atendimento e gestão de manifestações
+    8. Auditoria - Processos de auditoria e conformidade
+    9. Mundo do Trabalho - Acompanhamento de egressos
+    
+    CARACTERÍSTICAS DA DOCUMENTAÇÃO:
+    - Linguagem acessível para usuários não-técnicos
+    - Exemplos práticos de uso e interpretação
+    - Instruções passo-a-passo para operações comuns
+    - Orientações sobre filtros e controles interativos
+    - Guias de interpretação para diferentes tipos de gráficos
+    
+    OBJETIVO:
+    Capacitar usuários de diferentes perfis técnicos para
+    operação autônoma e eficiente do sistema, maximizando
+    aproveitamento das funcionalidades disponíveis.
+    
+    PARÂMETROS:
+    -----------
+    Nenhum
+        Função de renderização com conteúdo de documentação estruturado
+        
+    RETORNO:
+    --------
+    None
+        Exibe guia completo via st.markdown() no Streamlit
+        
+    SEÇÕES DO GUIA:
+    - Visão geral e objetivos institucionais
+    - Instruções de acesso e navegação básica
+    - Documentação detalhada de todos os módulos
+    - Orientações para uso de filtros e controles
+    - Guias de interpretação de visualizações
+    """
+    
+    # ============= RENDERIZAÇÃO DO CONTEÚDO DO GUIA DO USUÁRIO =============
+    # Documentação abrangente estruturada em seções organizadas
+    # Cobertura completa desde conceitos básicos até operação avançada
     st.markdown("""
     # 📋 Guia do Usuário - Dashboard IFPB-CZ
     
@@ -253,11 +452,67 @@ def show_user_guide():
     """)
 
 def show_excel_format_guide():
-    """Guia detalhado sobre formato dos arquivos Excel"""
+    """
+    Apresentação do guia detalhado sobre formato dos arquivos Excel.
+    
+    Esta função renderiza especificações técnicas completas para
+    formatação correta dos 9 arquivos Excel necessários para
+    funcionamento do sistema, incluindo estrutura de planilhas,
+    colunas obrigatórias, tipos de dados e observações técnicas.
+    
+    CONTEÚDO ESPECIFICADO:
+    - Visão geral da organização de arquivos na pasta dados/
+    - Estrutura padrão de planilhas (Dados + Metadados)
+    - Especificações detalhadas para cada um dos 9 módulos
+    - Tabelas com colunas obrigatórias, tipos e exemplos
+    - Observações técnicas críticas para funcionamento
+    
+    MÓDULOS DOCUMENTADOS:
+    1. dados_ensino.xlsx - 13 colunas para indicadores educacionais
+    2. dados_assistencia.xlsx - 10 colunas para programas assistenciais
+    3. dados_pesquisa.xlsx - 11 colunas para projetos científicos
+    4. dados_extensao.xlsx - 10 colunas para ações extensionistas
+    5. dados_orcamento.xlsx - 10 colunas para gestão financeira
+    6. dados_servidores.xlsx - 10 colunas para recursos humanos
+    7. dados_ouvidoria.xlsx - 10 colunas para atendimento
+    8. dados_auditoria.xlsx - 10 colunas para conformidade
+    9. dados_mundo_trabalho.xlsx - 10 colunas para egressos
+    
+    ESPECIFICAÇÕES TÉCNICAS:
+    - Nomenclatura exata de arquivos e planilhas
+    - Tipos de dados: Inteiro, Decimal, Texto com validação
+    - Formatos obrigatórios: datas (YYYY-MM-DD), decimais (ponto)
+    - Encoding UTF-8 e tratamento de valores nulos
+    - Instruções de implementação e atualização
+    
+    OBJETIVO:
+    Garantir entrada padronizada de dados eliminando erros
+    de formatação e permitindo processamento automático
+    confiável para geração de visualizações precisas.
+    
+    PARÂMETROS:
+    -----------
+    Nenhum
+        Função de renderização com especificações técnicas estruturadas
+        
+    RETORNO:
+    --------
+    None
+        Exibe guia de formatação via st.markdown() no Streamlit
+        
+    ELEMENTOS TÉCNICOS:
+    - Tabelas especificativas com colunas, tipos e exemplos
+    - Observações críticas sobre nomenclatura e formatação
+    - Instruções práticas de implementação
+    - Orientações de atualização e manutenção
+    """
     
 def show_excel_format_guide():
     """Guia detalhado sobre formato dos arquivos Excel"""
     
+    # ============= RENDERIZAÇÃO DAS ESPECIFICAÇÕES EXCEL =============
+    # Documentação técnica completa para formatação de dados
+    # Garante entrada padronizada e funcionamento correto do sistema
     st.markdown("""
     # 📊 Formato dos Dados Excel
     
@@ -546,8 +801,63 @@ def show_excel_format_guide():
     """)
 
 def show_faq():
-    """Seção de Perguntas Frequentes"""
+    """
+    Apresentação da seção de Perguntas Frequentes organizadas por temas.
     
+    Esta função renderiza FAQ abrangente com respostas para questões
+    comuns dos usuários, organizadas em 6 categorias temáticas para
+    facilitar localização de informações específicas e reduzir
+    necessidade de suporte técnico direto.
+    
+    CATEGORIAS ORGANIZADAS:
+    1. Atualização de Dados - Sincronização, frequência, controle temporal
+    2. Exportação de Dados - Gráficos, impressão, formatos disponíveis
+    3. Problemas Técnicos - Performance, carregamento, resolução comum
+    4. Dispositivos e Navegadores - Compatibilidade, responsividade
+    5. Segurança e Acesso - Privacidade, controle de acesso, autenticação
+    6. Indicadores e Métricas - Interpretação, cálculos, dados sintéticos
+    
+    QUESTÕES ABORDADAS:
+    - Frequência e métodos de atualização de dados
+    - Procedimentos de exportação e impressão
+    - Resolução de problemas técnicos comuns
+    - Compatibilidade com dispositivos móveis
+    - Questões de segurança e privacidade
+    - Interpretação correta de métricas e indicadores
+    - Dicas avançadas de uso e personalização
+    
+    CARACTERÍSTICAS DO CONTEÚDO:
+    - Respostas práticas e diretas para problemas comuns
+    - Instruções passo-a-passo para procedimentos
+    - Orientações técnicas simplificadas para usuários leigos
+    - Referências cruzadas com outras seções da ajuda
+    - Exemplos concretos e cenários de uso real
+    
+    OBJETIVO:
+    Reduzir demanda por suporte técnico fornecendo respostas
+    imediatas para questões rotineiras, melhorando autonomia
+    dos usuários e eficiência operacional do sistema.
+    
+    PARÂMETROS:
+    -----------
+    Nenhum
+        Função de renderização com conteúdo de FAQ estruturado
+        
+    RETORNO:
+    --------
+    None
+        Exibe FAQ completo via st.markdown() no Streamlit
+        
+    ESTRUTURA DO FAQ:
+    - 25+ perguntas organizadas em 6 categorias temáticas
+    - Respostas práticas com instruções específicas
+    - Referências a recursos adicionais quando aplicável
+    - Dicas de uso avançado e otimização
+    """
+    
+    # ============= RENDERIZAÇÃO DO FAQ ORGANIZADO POR TEMAS =============
+    # Perguntas frequentes estruturadas em categorias para localização rápida
+    # Cobertura abrangente de questões comuns para reduzir suporte direto
     st.markdown("""
     # ❓ Perguntas Frequentes (FAQ)
     
@@ -657,8 +967,69 @@ def show_faq():
     """)
 
 def show_contact_support():
-    """Seção de contato e suporte"""
+    """
+    Apresentação das informações de contato e suporte institucional.
     
+    Esta função renderiza informações completas sobre canais de
+    suporte técnico, contatos institucionais, procedimentos para
+    relato de problemas, recursos de treinamento e documentação
+    adicional disponível para usuários do sistema.
+    
+    INFORMAÇÕES DISPONIBILIZADAS:
+    - Dados institucionais completos do IFPB Campus Cajazeiras
+    - Contatos especializados: NAI (assessoria) e CTI (tecnologia)
+    - Canais de emergência para problemas críticos do sistema
+    - Templates estruturados para relato eficiente de problemas
+    - Programas de treinamento e capacitação disponíveis
+    
+    CANAIS DE SUPORTE:
+    1. NAI (Núcleo de Assessoria em Informação) - Suporte principal
+    2. CTI (Coordenação de Tecnologia da Informação) - Suporte técnico
+    3. WhatsApp Emergência - Problemas críticos 24h
+    4. E-mail Feedback - Sugestões e melhorias
+    5. Workshops - Treinamento presencial organizado
+    
+    RECURSOS ADICIONAIS:
+    - Documentação técnica (manual administrativo, código fonte)
+    - Tutoriais em vídeo no YouTube institucional
+    - Cronograma de manutenções programadas
+    - Sistemas de notificação para atualizações
+    - Formulários estruturados para feedback
+    
+    CARACTERÍSTICAS DO SUPORTE:
+    - Múltiplos canais conforme urgência e tipo de problema
+    - Templates para comunicação eficiente com suporte
+    - Informações de horários e disponibilidade
+    - Procedimentos escalados para diferentes tipos de questões
+    - Recursos de auto-atendimento e capacitação
+    
+    OBJETIVO:
+    Facilitar acesso a suporte adequado conforme necessidade,
+    otimizar comunicação com equipes técnicas e fornecer
+    recursos para desenvolvimento de autonomia dos usuários.
+    
+    PARÂMETROS:
+    -----------
+    Nenhum
+        Função de renderização com informações de contato estruturadas
+        
+    RETORNO:
+    --------
+    None
+        Exibe informações de contato via st.markdown() no Streamlit
+        
+    SEÇÕES DE CONTATO:
+    - Informações institucionais do Campus Cajazeiras
+    - Contatos especializados por área (NAI/CTI)
+    - Procedimentos de emergência e escalation
+    - Templates para relato estruturado de problemas
+    - Recursos de treinamento e documentação adicional
+    - Créditos da equipe de desenvolvimento
+    """
+    
+    # ============= RENDERIZAÇÃO DAS INFORMAÇÕES DE CONTATO =============
+    # Documentação completa de canais de suporte e recursos institucionais
+    # Facilita acesso a ajuda adequada conforme tipo de necessidade
     st.markdown("""
     # 📞 Contato e Suporte
     
@@ -808,6 +1179,9 @@ def show_contact_support():
     **Data**: Julho 2025
     """)
     
+    # ============= WIDGET DE INFORMAÇÕES DE SUPORTE DESTACADAS =============
+    # Informações essenciais de contato em formato visual destacado
+    # Facilita acesso rápido aos canais principais de suporte
     # Informações de contato em destaque
     st.info("""
     🆘 **SUPORTE RÁPIDO**
@@ -818,4 +1192,7 @@ def show_contact_support():
     🕒 **Horário**: Segunda a Sexta, 08h às 17h
     """)
     
+    # ============= NOTA SOBRE REMOÇÃO DE DUPLICAÇÃO =============
+    # display_footer() estava duplicado no código original
+    # Removido para evitar redundância e manter consistência
     # display_footer() estava duplicado, removido para evitar redundância. 28/07/2025

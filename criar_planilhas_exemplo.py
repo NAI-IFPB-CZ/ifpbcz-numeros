@@ -15,7 +15,7 @@ Funcionalidades:
 Execução:
 python criar_planilhas_exemplo.py
 
-Autor: Sistema Dashboard IFPB-CZ
+Autor: Sistema NAI/IFPB-CZ
 Data: Julho 2025
 ==============================================================================
 """
@@ -26,12 +26,12 @@ from datetime import datetime
 
 def criar_planilhas_exemplo():
     """
-    Cria planilhas Excel de exemplo com a estrutura correta para dados reais.
-    
+    Cria planilhas Excel de exemplo com a estrutura correta para dados fictícios.
+
     Esta função gera dados sintéticos compatíveis com a estrutura esperada
     pelo sistema dashboard, permitindo testar a funcionalidade com dados
-    reais em vez de dados totalmente sintéticos.
-    
+    fictícios em vez de dados totalmente sintéticos.
+
     Returns:
         None: Cria arquivos Excel no diretório dados/
     """

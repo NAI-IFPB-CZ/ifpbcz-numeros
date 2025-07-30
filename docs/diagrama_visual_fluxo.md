@@ -224,7 +224,7 @@
 ────────────                        ───────────                       ─────────
 
 ┌─────────────────┐                 ┌─────────────────┐               ┌─────────────────┐
-│ ☰ Menu │ Main   │                 │ ☰ │    Main     │               │ ☰               │
+│ ☰ Menu │ Main   │                │ ☰ │    Main     │               │ ☰               │
 │ Side   │ Content│ ──────────────► │ S │   Content   │ ────────────► │ Full Screen     │
 │ bar    │ Area   │                 │ i │    Area     │               │ Content         │
 │ (21rem)│(Fluid) │                 │ d │  (Adapted)  │               │ (Collapsed      │

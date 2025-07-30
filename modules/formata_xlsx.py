@@ -1,11 +1,138 @@
+"""
+=============================================================================
+MÓDULO DE ESPECIFICAÇÃO DE FORMATOS DE DADOS EXCEL - SISTEMA DASHBOARD IFPB-CZ
+=============================================================================
+
+Este módulo implementa a página de ajuda e especificação dos formatos de dados
+Excel necessários para o correto funcionamento do Sistema Dashboard IFPB-CZ.
+Fornece documentação detalhada sobre estrutura de arquivos, formatos de planilhas
+e especificações técnicas para cada módulo do sistema.
+
+FUNCIONALIDADES PRINCIPAIS:
+---------------------------
+- Documentação completa de formatos de dados Excel (.xlsx)
+- Especificações detalhadas de estrutura de planilhas por módulo
+- Guias de nomenclatura e organização de arquivos de dados
+- Exemplos práticos de formatação e preenchimento
+- Orientações técnicas sobre tipos de dados e encoding
+- Instruções de atualização e manutenção de dados
+
+MÓDULOS DOCUMENTADOS:
+---------------------
+1. Ensino - Indicadores educacionais e desempenho acadêmico
+2. Assistência Estudantil - Programas de apoio ao estudante
+3. Pesquisa - Projetos de iniciação científica e produção acadêmica
+4. Extensão - Ações de extensão e interação com a comunidade
+5. Orçamento - Gestão financeira e execução orçamentária
+6. Servidores - Recursos humanos e gestão de pessoal
+7. Ouvidoria - Atendimento e gestão de manifestações
+8. Auditoria - Processos de auditoria e conformidade
+9. Mundo do Trabalho - Acompanhamento de egressos
+
+ESTRUTURA DE DADOS:
+-------------------
+- Arquivos Excel (.xlsx) organizados por módulo na pasta dados/
+- Planilhas padronizadas com estrutura de colunas obrigatórias
+- Metadados automáticos para controle de versionamento
+- Tipos de dados rigorosamente especificados
+- Formatos de entrada padronizados e validados
+
+CARACTERÍSTICAS TÉCNICAS:
+--------------------------
+- Interface responsiva com documentação interativa
+- Tabelas especificativas com exemplos práticos
+- Seções organizadas por módulo funcional
+- Orientações de uso e melhores práticas
+- Validação de formatos e detecção de erros comuns
+- Suporte a múltiplos tipos de dados (texto, números, datas)
+
+OBJETIVO:
+---------
+Garantir consistência na entrada de dados, facilitar manutenção
+do sistema e permitir que usuários técnicos e não-técnicos compreendam
+os requisitos de formatação para alimentação correta do dashboard
+com dados institucionais precisos e bem estruturados.
+
+DEPENDÊNCIAS:
+-------------
+- streamlit: Interface web principal
+- utils: Funções de cabeçalho e rodapé padronizados
+
+AUTOR: Sistema Dashboard IFPB-CZ
+DATA: 2024
+=============================================================================
+"""
+
 import streamlit as st
 from .utils import display_header_with_logo, display_footer
 
 def show_help():
-    """Página de ajuda com especificações dos formatos de dados Excel"""
+    """
+    Exibição da página de ajuda com especificações completas dos formatos Excel.
     
+    Esta função apresenta documentação abrangente sobre como formatar
+    corretamente os arquivos Excel (.xlsx) para cada módulo do sistema,
+    incluindo estrutura de arquivos, especificações de planilhas,
+    tipos de dados obrigatórios e orientações técnicas de uso.
+    
+    CONTEÚDO APRESENTADO:
+    - Visão geral da estrutura de arquivos de dados
+    - Especificações detalhadas por módulo (9 módulos)
+    - Tabelas com colunas obrigatórias e tipos de dados
+    - Exemplos práticos de formatação
+    - Observações técnicas importantes
+    - Instruções de uso e atualização
+    
+    MÓDULOS DOCUMENTADOS:
+    - Ensino: dados_ensino.xlsx (13 colunas)
+    - Assistência Estudantil: dados_assistencia.xlsx (10 colunas)
+    - Pesquisa: dados_pesquisa.xlsx (11 colunas)
+    - Extensão: dados_extensao.xlsx (10 colunas)
+    - Orçamento: dados_orcamento.xlsx (10 colunas)
+    - Servidores: dados_servidores.xlsx (10 colunas)
+    - Ouvidoria: dados_ouvidoria.xlsx (10 colunas)
+    - Auditoria: dados_auditoria.xlsx (10 colunas)
+    - Mundo do Trabalho: dados_mundo_trabalho.xlsx (10 colunas)
+    
+    ESTRUTURA DE DOCUMENTAÇÃO:
+    - Cabeçalho institucional com logotipo
+    - Visão geral da organização de arquivos
+    - Especificações detalhadas por módulo
+    - Tabelas de referência com exemplos
+    - Observações técnicas críticas
+    - Instruções de implementação
+    - Rodapé institucional
+    
+    OBJETIVO:
+    Fornecer documentação técnica completa e acessível para
+    usuários responsáveis pela alimentação de dados do sistema,
+    garantindo consistência, precisão e facilidade de manutenção.
+    
+    PARÂMETROS:
+    -----------
+    Nenhum
+        Função de renderização com conteúdo estático estruturado
+        
+    RETORNO:
+    --------
+    None
+        Exibe documentação completa via st.markdown() no Streamlit
+        
+    ELEMENTOS TÉCNICOS:
+    - Cabeçalho: display_header_with_logo()
+    - Conteúdo: múltiplas seções st.markdown()
+    - Rodapé: display_footer()
+    - Formatação: tabelas, listas, seções organizadas
+    """
+    
+    # ============= RENDERIZAÇÃO DO CABEÇALHO INSTITUCIONAL =============
+    # Exibição do cabeçalho padronizado com logotipo oficial do IFPB
+    # Mantém consistência visual com demais páginas do sistema
     display_header_with_logo("Ajuda - Formato dos Dados Excel")
     
+    # ============= SEÇÃO DE VISÃO GERAL DO SISTEMA =============
+    # Introdução explicativa sobre organização e estrutura dos dados
+    # Apresenta conceitos fundamentais para compreensão dos formatos
     st.markdown("""
     ## 📋 Visão Geral
     
@@ -36,6 +163,9 @@ def show_help():
     ---
     """)
     
+    # ============= ESPECIFICAÇÃO DO MÓDULO DE ENSINO =============
+    # Documentação detalhada das colunas obrigatórias para dados educacionais
+    # Inclui tipos de dados, descrições e exemplos práticos de uso
     # Ensino
     st.markdown("""
     ## 🎓 Módulo de Ensino
@@ -64,6 +194,9 @@ def show_help():
     ---
     """)
     
+    # ============= ESPECIFICAÇÃO DO MÓDULO DE ASSISTÊNCIA ESTUDANTIL =============
+    # Documentação dos formatos para dados de programas assistenciais
+    # Estrutura para acompanhamento de benefícios e apoio aos estudantes
     # Assistência Estudantil
     st.markdown("""
     ## 🤝 Módulo de Assistência Estudantil
@@ -89,6 +222,9 @@ def show_help():
     ---
     """)
     
+    # ============= ESPECIFICAÇÃO DO MÓDULO DE PESQUISA =============
+    # Documentação para dados de projetos de iniciação científica
+    # Estrutura para acompanhamento de produção acadêmica e bolsas
     # Pesquisa
     st.markdown("""
     ## 🔬 Módulo de Pesquisa
@@ -115,6 +251,9 @@ def show_help():
     ---
     """)
     
+    # ============= ESPECIFICAÇÃO DO MÓDULO DE EXTENSÃO =============
+    # Documentação para dados de ações extensionistas
+    # Estrutura para projetos de interação com a comunidade externa
     # Extensão
     st.markdown("""
     ## 🌟 Módulo de Extensão
@@ -140,6 +279,9 @@ def show_help():
     ---
     """)
     
+    # ============= ESPECIFICAÇÃO DO MÓDULO DE ORÇAMENTO =============
+    # Documentação para dados de gestão financeira institucional
+    # Estrutura para acompanhamento de execução orçamentária e categorias
     # Orçamento
     st.markdown("""
     ## 💰 Módulo de Orçamento
@@ -165,6 +307,9 @@ def show_help():
     ---
     """)
     
+    # ============= ESPECIFICAÇÃO DO MÓDULO DE SERVIDORES =============
+    # Documentação para dados de recursos humanos e gestão de pessoal
+    # Estrutura para acompanhamento de quadro funcional e características
     # Servidores
     st.markdown("""
     ## 👥 Módulo de Servidores
@@ -190,6 +335,9 @@ def show_help():
     ---
     """)
     
+    # ============= ESPECIFICAÇÃO DO MÓDULO DE OUVIDORIA =============
+    # Documentação para dados de atendimento e gestão de manifestações
+    # Estrutura para acompanhamento de demandas e satisfação dos usuários
     # Ouvidoria
     st.markdown("""
     ## 📢 Módulo de Ouvidoria
@@ -215,6 +363,9 @@ def show_help():
     ---
     """)
     
+    # ============= ESPECIFICAÇÃO DO MÓDULO DE AUDITORIA =============
+    # Documentação para dados de processos de auditoria e conformidade
+    # Estrutura para acompanhamento de recomendações e níveis de risco
     # Auditoria
     st.markdown("""
     ## 🔍 Módulo de Auditoria
@@ -240,6 +391,9 @@ def show_help():
     ---
     """)
     
+    # ============= ESPECIFICAÇÃO DO MÓDULO MUNDO DO TRABALHO =============
+    # Documentação para dados de acompanhamento de egressos
+    # Estrutura para análise de inserção profissional e continuidade educacional
     # Mundo do Trabalho
     st.markdown("""
     ## 💼 Módulo do Mundo do Trabalho
@@ -265,6 +419,9 @@ def show_help():
     ---
     """)
     
+    # ============= SEÇÃO DE OBSERVAÇÕES TÉCNICAS IMPORTANTES =============
+    # Orientações críticas para garantir funcionamento correto do sistema
+    # Especificações técnicas de formatação, encoding e estrutura de dados
     st.markdown("""
     ## ⚠️ Observações Importantes
     
@@ -291,4 +448,7 @@ def show_help():
     O sistema detectará automaticamente as alterações e exibirá a data de atualização.
     """)
     
+    # ============= RENDERIZAÇÃO DO RODAPÉ INSTITUCIONAL =============
+    # Exibição do rodapé padronizado para manter consistência visual
+    # Finaliza a página com informações institucionais padrão
     display_footer()

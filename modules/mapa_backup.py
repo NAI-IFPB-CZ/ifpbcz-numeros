@@ -1,3 +1,7 @@
+# vamos deixar só como backup, pois o mapa.py já está atualizado
+# e funcionando corretamente 17/07/2025
+# não é necessário manter este arquivo, depois lembrar de remover.
+
 import streamlit as st
 import pandas as pd
 from .utils import display_header_with_logo, display_footer

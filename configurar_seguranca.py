@@ -19,7 +19,7 @@ EXEMPLOS DE USO:
     python configurar_seguranca.py edicao   # Ativa modo edição
     python configurar_seguranca.py status   # Mostra configurações atuais
 
-AUTOR: Sistema Dashboard IFPB-CZ
+AUTOR: Sistema NAI/IFPB-CZ
 DATA: 2025
 """
 

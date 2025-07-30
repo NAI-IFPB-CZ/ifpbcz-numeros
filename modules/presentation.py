@@ -1,40 +1,192 @@
+# ============================================================================
+# MÓDULO DE APRESENTAÇÃO INSTITUCIONAL - DASHBOARD IFPB CAMPUS CAJAZEIRAS
+# ============================================================================
+"""
+DESCRIÇÃO DO MÓDULO:
+Este módulo contém a apresentação completa e institucional do Sistema Dashboard IFPB-CZ,
+fornecendo informações abrangentes sobre a instituição, o sistema desenvolvido, suas
+funcionalidades, benefícios e roadmap de evolução futura.
+
+FUNCIONALIDADES PRINCIPAIS:
+1. Visão institucional completa do IFPB Campus Cajazeiras
+2. Apresentação técnica e conceitual do sistema dashboard
+3. Detalhamento de funcionalidades por módulo específico
+4. Demonstração de benefícios e impactos institucionais
+5. Roadmap de evolução e próximos passos de desenvolvimento
+
+ESTRUTURA DE CONTEÚDO:
+- Tab 1: Visão Institucional (missão, visão, valores, localização)
+- Tab 2: Apresentação do Sistema (tecnologias, arquitetura, design)
+- Tab 3: Funcionalidades Detalhadas (módulos e recursos técnicos)
+- Tab 4: Benefícios e Impactos (gestão, comunidade, sociedade)
+- Tab 5: Próximos Passos (roadmap, objetivos, participação)
+
+CARACTERÍSTICAS TÉCNICAS:
+- Interface em abas (tabs) para organização de conteúdo
+- Markdown avançado com hierarquia visual estruturada
+- Emojis para identificação visual e engajamento
+- Links e referências para recursos externos
+- Formatação responsiva e acessível
+
+PÚBLICO-ALVO:
+- Gestores institucionais e tomadores de decisão
+- Comunidade acadêmica (docentes, técnicos, estudantes)
+- Sociedade civil e parceiros externos
+- Órgãos de controle e supervisão educacional
+- Pesquisadores em gestão educacional e tecnologia
+
+USO TÍPICO:
+- Apresentações institucionais formais
+- Material de referência para novos usuários
+- Documentação para auditorias e avaliações
+- Promoção e divulgação do sistema desenvolvido
+- Base para replicação em outras instituições
+"""
+
 import streamlit as st
 from .utils import display_header_with_logo, display_footer
 
 def show_presentation():
-    """Apresentação completa do Sistema Dashboard IFPB-CZ"""
+    """
+    Função principal para exibição da apresentação completa do Sistema Dashboard IFPB-CZ.
     
+    Esta função organiza e coordena a apresentação institucional do sistema através
+    de uma interface em abas (tabs), proporcionando navegação estruturada e
+    experiência de usuário otimizada para diferentes perfis de público.
+    
+    ESTRUTURA DA APRESENTAÇÃO:
+    - Interface em 5 abas temáticas principais
+    - Conteúdo progressive disclosure para melhor absorção
+    - Navegação intuitiva com ícones representativos
+    - Fluxo lógico do institucional ao técnico
+    
+    ORGANIZAÇÃO DAS ABAS:
+    1. 🏛️ Institucional - Contexto e identidade do IFPB-CZ
+    2. 📊 O Sistema - Apresentação técnica e conceitual
+    3. 🎯 Funcionalidades - Detalhamento de recursos e módulos
+    4. 📈 Benefícios - Impactos e vantagens demonstradas
+    5. 🚀 Próximos Passos - Roadmap e evolução futura
+    
+    CARACTERÍSTICAS VISUAIS:
+    - Cabeçalho institucional padronizado com logo
+    - Navegação por abas para organização de conteúdo
+    - Rodapé institucional para fechamento consistente
+    - Markdown estruturado com hierarquia visual clara
+    
+    PARÂMETROS:
+    -----------
+    Nenhum
+        Função autônoma sem dependência de parâmetros externos
+        
+    RETORNO:
+    --------
+    None
+        Renderiza interface Streamlit diretamente na aplicação
+        
+    FUNCIONALIDADES INCLUÍDAS:
+    - Renderização de cabeçalho com identidade visual
+    - Coordenação de navegação entre seções temáticas
+    - Integração de funções especializadas por conteúdo
+    - Exibição de rodapé institucional padronizado
+    """
+    
+    # ============= EXIBIÇÃO DO CABEÇALHO INSTITUCIONAL =============
+    # Renderização do cabeçalho padronizado com identidade visual IFPB
     display_header_with_logo("Apresentação - Sistema Dashboard IFPB-CZ")
     
-    # Menu de navegação da apresentação
+    # ============= NAVEGAÇÃO PRINCIPAL POR ABAS TEMÁTICAS =============
+    # Interface organizada em 5 seções principais para navegação estruturada
+    # Cada aba representa um aspecto específico da apresentação institucional
     tab1, tab2, tab3, tab4, tab5 = st.tabs([
-        "🏛️ Institucional", 
-        "📊 O Sistema", 
-        "🎯 Funcionalidades",
-        "📈 Benefícios",
-        "🚀 Próximos Passos"
+        "🏛️ Institucional",      # Contexto e identidade do IFPB Campus Cajazeiras
+        "📊 O Sistema",          # Apresentação técnica e conceitual do dashboard
+        "🎯 Funcionalidades",    # Detalhamento de recursos e módulos específicos
+        "📈 Benefícios",         # Impactos, vantagens e resultados demonstrados
+        "🚀 Próximos Passos"     # Roadmap, evolução e oportunidades de participação
     ])
     
+    # ============= RENDERIZAÇÃO DE CONTEÚDO POR SEÇÃO =============
+    # Cada aba delega para função especializada em conteúdo específico
+    
+    # Seção 1: Visão Institucional Completa
+    # Apresentação da missão, visão, valores e contexto do IFPB-CZ
     with tab1:
         show_institutional_overview()
     
+    # Seção 2: Apresentação Técnica do Sistema
+    # Detalhamento do dashboard, tecnologias e arquitetura
     with tab2:
         show_system_overview()
     
+    # Seção 3: Funcionalidades e Recursos Técnicos
+    # Exploração detalhada de módulos e capacidades do sistema
     with tab3:
         show_features()
     
+    # Seção 4: Benefícios e Impactos Demonstrados
+    # Apresentação de vantagens, resultados e transformações
     with tab4:
         show_benefits()
     
+    # Seção 5: Roadmap e Evolução Futura
+    # Planejamento estratégico e oportunidades de participação
     with tab5:
         show_next_steps()
     
+    # ============= EXIBIÇÃO DO RODAPÉ INSTITUCIONAL =============
+    # Renderização do rodapé padronizado para fechamento consistente
     display_footer()
 
 def show_institutional_overview():
-    """Visão institucional do IFPB-CZ"""
+    """
+    Apresentação da visão institucional completa do IFPB Campus Cajazeiras.
     
+    Esta função renderiza informações abrangentes sobre a identidade, missão,
+    estrutura e contexto do Instituto Federal da Paraíba - Campus Cajazeiras,
+    fornecendo base institucional para compreensão do sistema dashboard.
+    
+    CONTEÚDO APRESENTADO:
+    - Missão, visão e valores institucionais
+    - Localização geográfica e área de influência regional
+    - Estrutura de cursos e modalidades oferecidas
+    - Indicadores quantitativos de desempenho institucional
+    - Principais conquistas e reconhecimentos obtidos
+    - Parcerias estratégicas e articulações externas
+    
+    CARACTERÍSTICAS DO CONTEÚDO:
+    - Markdown estruturado com hierarquia visual clara
+    - Emojis para identificação e engajamento visual
+    - Dados quantitativos atualizados e contextualizados
+    - Links para recursos externos quando relevante
+    - Formatação responsiva para diferentes dispositivos
+    
+    OBJETIVO:
+    Fornecer contexto institucional completo para visitantes que necessitam
+    compreender o ambiente organizacional onde o dashboard foi desenvolvido
+    e implementado, estabelecendo credibilidade e relevância do sistema.
+    
+    PARÂMETROS:
+    -----------
+    Nenhum
+        Função de renderização com conteúdo estático estruturado
+        
+    RETORNO:
+    --------
+    None
+        Exibe conteúdo diretamente via st.markdown() no Streamlit
+        
+    SEÇÕES INCLUÍDAS:
+    - Identificação institucional e localização
+    - Missão, visão e valores organizacionais
+    - Estrutura acadêmica e oferta de cursos
+    - Indicadores de desempenho e qualidade
+    - Reconhecimentos e certificações obtidas
+    - Rede de parcerias e colaborações estratégicas
+    """
+    
+    # ============= RENDERIZAÇÃO DO CONTEÚDO INSTITUCIONAL =============
+    # Apresentação estruturada da identidade e contexto do IFPB Campus Cajazeiras
+    # Utilização de Markdown avançado para formatação hierárquica e visual
     st.markdown("""
     # 🏛️ Instituto Federal da Paraíba - Campus Cajazeiras
     
@@ -130,8 +282,58 @@ def show_institutional_overview():
     """)
 
 def show_system_overview():
-    """Visão geral do sistema dashboard"""
+    """
+    Apresentação técnica e conceitual do Sistema Dashboard IFPB-CZ.
     
+    Esta função fornece visão abrangente do sistema desenvolvido, incluindo
+    aspectos técnicos, arquiteturais, tecnológicos e evolutivos da plataforma
+    de dashboard institucional do IFPB Campus Cajazeiras.
+    
+    CONTEÚDO APRESENTADO:
+    - Conceituação e propósito do sistema dashboard
+    - Inspiração e referências para desenvolvimento
+    - Equipe responsável e coordenação técnica
+    - Stack tecnológico completo (frontend/backend)
+    - Arquitetura de software e organização modular
+    - Design responsivo e identidade visual aplicada
+    - Medidas de segurança e controle implementadas
+    - Linha do tempo de desenvolvimento e evolução
+    
+    CARACTERÍSTICAS TÉCNICAS DESTACADAS:
+    - Tecnologias Python para processamento de dados
+    - Framework Streamlit para interface web responsiva
+    - Bibliotecas especializadas em visualização (Plotly, Folium)
+    - Arquitetura modular para escalabilidade e manutenção
+    - Sistema de segurança com conformidade LGPD
+    - Design responsivo para múltiplas plataformas
+    
+    OBJETIVO:
+    Demonstrar robustez técnica, inovação tecnológica e qualidade de
+    desenvolvimento do sistema, estabelecendo confiança na solução
+    e evidenciando capacidade técnica da equipe institucional.
+    
+    PARÂMETROS:
+    -----------
+    Nenhum
+        Função de renderização com conteúdo técnico estruturado
+        
+    RETORNO:
+    --------
+    None
+        Exibe conteúdo técnico via st.markdown() no Streamlit
+        
+    SEÇÕES TÉCNICAS INCLUÍDAS:
+    - Definição e propósito da plataforma
+    - Stack tecnológico e ferramentas utilizadas
+    - Arquitetura de software e organização de código
+    - Design system e identidade visual institucional
+    - Segurança da informação e proteção de dados
+    - Roadmap de desenvolvimento e evolução histórica
+    """
+    
+    # ============= RENDERIZAÇÃO DO CONTEÚDO TÉCNICO DO SISTEMA =============
+    # Apresentação estruturada das características técnicas e arquiteturais
+    # Foco em demonstrar qualidade, inovação e robustez da solução desenvolvida
     st.markdown("""
     # 📊 Sistema Dashboard IFPB-CZ
     
@@ -264,8 +466,67 @@ def show_system_overview():
     """)
 
 def show_features():
-    """Funcionalidades detalhadas do sistema"""
+    """
+    Apresentação detalhada das funcionalidades do Sistema Dashboard IFPB-CZ.
     
+    Esta função fornece exploração abrangente de todos os módulos, recursos
+    técnicos e capacidades do sistema dashboard, demonstrando a amplitude
+    e profundidade das funcionalidades implementadas para gestão institucional.
+    
+    CONTEÚDO APRESENTADO:
+    - Detalhamento completo dos 9 módulos de dashboard
+    - Indicadores específicos e métricas por área funcional
+    - Recursos técnicos avançados de visualização
+    - Funcionalidades interativas e filtros disponíveis
+    - Tipos de gráficos e análises implementadas
+    - Capacidades de responsividade e acessibilidade
+    
+    MÓDULOS DOCUMENTADOS:
+    1. Ensino - Indicadores acadêmicos e desempenho estudantil
+    2. Assistência Estudantil - Programas de apoio e benefícios
+    3. Pesquisa - Produção científica e projetos de inovação
+    4. Extensão - Ações comunitárias e impacto social
+    5. Orçamento - Transparência financeira e execução orçamentária
+    6. Servidores - Gestão de pessoas e recursos humanos
+    7. Ouvidoria - Canal de comunicação e atendimento
+    8. Auditoria - Controle interno e conformidade
+    9. Mundo do Trabalho - Empregabilidade e inserção profissional
+    10. Mapa dos Campus - Visualização geográfica institucional
+    
+    RECURSOS TÉCNICOS DESTACADOS:
+    - Visualizações interativas com Plotly e Folium
+    - Filtros dinâmicos e seleções múltiplas
+    - Design responsivo para múltiplas plataformas
+    - Exportação de dados e gráficos
+    - Interface intuitiva e acessível
+    
+    OBJETIVO:
+    Demonstrar amplitude funcional, qualidade técnica e utilidade prática
+    do sistema para diferentes perfis de usuários, evidenciando retorno
+    do investimento em desenvolvimento e capacidade de atender demandas
+    diversificadas de gestão institucional.
+    
+    PARÂMETROS:
+    -----------
+    Nenhum
+        Função de renderização com conteúdo funcional estruturado
+        
+    RETORNO:
+    --------
+    None
+        Exibe detalhamento funcional via st.markdown() no Streamlit
+        
+    CARACTERÍSTICAS APRESENTADAS:
+    - Funcionalidades por módulo específico
+    - Indicadores e métricas implementadas
+    - Recursos técnicos de visualização e interação
+    - Capacidades de análise e relatório
+    - Design responsivo e experiência do usuário
+    """
+    
+    # ============= RENDERIZAÇÃO DO CONTEÚDO FUNCIONAL =============
+    # Apresentação estruturada das funcionalidades e capacidades técnicas
+    # Demonstração da amplitude e qualidade dos recursos implementados
     st.markdown("""
     # 🎯 Funcionalidades do Sistema
     
@@ -486,7 +747,64 @@ def show_features():
     """)
 
 def show_benefits():
-    """Benefícios e impactos do sistema"""
+    """
+    Apresentação dos benefícios e impactos do Sistema Dashboard IFPB-CZ.
+    
+    Esta função demonstra os resultados tangíveis, vantagens competitivas
+    e transformações organizacionais proporcionadas pela implementação
+    do sistema dashboard, evidenciando retorno do investimento e valor
+    agregado para diferentes stakeholders institucionais.
+    
+    CONTEÚDO APRESENTADO:
+    - Benefícios para gestão institucional e tomada de decisão
+    - Vantagens para comunidade acadêmica (estudantes, professores, técnicos)
+    - Impactos positivos para sociedade e setor produtivo
+    - Melhorias mensuráveis em indicadores institucionais
+    - Reconhecimentos externos e certificações obtidas
+    - Diferenciais competitivos e vantagens únicas
+    - Métricas de sucesso e adoção do sistema
+    
+    STAKEHOLDERS BENEFICIADOS:
+    - Gestores institucionais (decisões baseadas em dados)
+    - Comunidade acadêmica (transparência e autoconhecimento)
+    - Sociedade civil (prestação de contas e engajamento)
+    - Setor produtivo (informações para parcerias)
+    - Órgãos de controle (transparência e conformidade)
+    
+    TIPOS DE IMPACTO DEMONSTRADOS:
+    - Eficiência operacional e otimização de recursos
+    - Melhoria na qualidade da gestão institucional
+    - Aumento da transparência e accountability
+    - Fortalecimento da imagem e credibilidade institucional
+    - Inovação tecnológica e pioneirismo educacional
+    
+    OBJETIVO:
+    Evidenciar valor agregado, retorno do investimento e impacto positivo
+    do sistema, justificando recursos aplicados e demonstrando benefícios
+    tangíveis para validação da iniciativa e incentivo à continuidade
+    e expansão do projeto.
+    
+    PARÂMETROS:
+    -----------
+    Nenhum
+        Função de renderização com conteúdo de impacto estruturado
+        
+    RETORNO:
+    --------
+    None
+        Exibe demonstração de benefícios via st.markdown() no Streamlit
+        
+    CATEGORIAS DE BENEFÍCIOS:
+    - Operacionais (eficiência, automação, otimização)
+    - Estratégicos (decisão, planejamento, competitividade)
+    - Sociais (transparência, engajamento, confiança)
+    - Técnicos (inovação, qualidade, segurança)
+    - Financeiros (economia, ROI, sustentabilidade)
+    """
+    
+    # ============= RENDERIZAÇÃO DO CONTEÚDO DE BENEFÍCIOS =============
+    # Apresentação estruturada dos impactos e vantagens demonstradas
+    # Evidenciação do valor agregado e retorno do investimento realizado
     
     st.markdown("""
     # 📈 Benefícios e Impactos do Sistema
@@ -675,8 +993,61 @@ def show_benefits():
     """)
 
 def show_next_steps():
-    """Próximos passos e evolução do sistema"""
+    """
+    Apresentação do roadmap e próximos passos do Sistema Dashboard IFPB-CZ.
     
+    Esta função delineia a evolução futura planejada para o sistema,
+    objetivos estratégicos, oportunidades de participação e visão de
+    longo prazo para transformação digital da instituição.
+    
+    CONTEÚDO APRESENTADO:
+    - Roadmap detalhado de desenvolvimento por períodos
+    - Objetivos estratégicos quantitativos e qualitativos
+    - Oportunidades de participação para diferentes stakeholders
+    - Visão de impacto social e transformação regional
+    - Canais de contribuição e feedback para evolução
+    - Agradecimentos e reconhecimento de colaboradores
+    
+    HORIZONTES TEMPORAIS:
+    - Médio prazo (próximos 10 meses): melhorias técnicas e expansão
+    - Médio/Longo prazo (1-2 anos): IA e expansão da rede
+    - Longo prazo (2+ anos): inovações disruptivas e transformação
+    
+    ÁREAS DE EVOLUÇÃO:
+    - Técnica (performance, mobile, segurança, UX/UI)
+    - Funcional (novos dados, KPIs, relatórios automáticos)
+    - Inteligência (AI, predições, insights automáticos)
+    - Expansão (outros campus, rede federal, internacional)
+    - Inovação (VR, voz, app nativo, cloud computing)
+    
+    OBJETIVO:
+    Demonstrar visão estratégica, compromisso com evolução contínua
+    e oportunidades de engajamento, incentivando participação ativa
+    da comunidade na construção do futuro da plataforma e estabelecendo
+    expectativas realistas para desenvolvimento sustentável.
+    
+    PARÂMETROS:
+    -----------
+    Nenhum
+        Função de renderização com conteúdo de roadmap estruturado
+        
+    RETORNO:
+    --------
+    None
+        Exibe planejamento futuro via st.markdown() no Streamlit
+        
+    ELEMENTOS DO ROADMAP:
+    - Cronograma de desenvolvimento por fases
+    - Metas quantitativas e qualitativas específicas
+    - Formas de participação e contribuição
+    - Canais de comunicação e feedback
+    - Visão de transformação institucional
+    - Reconhecimento de stakeholders envolvidos
+    """
+    
+    # ============= RENDERIZAÇÃO DO CONTEÚDO DE ROADMAP =============
+    # Apresentação estruturada do planejamento futuro e oportunidades
+    # Demonstração de visão estratégica e compromisso com evolução contínua
     st.markdown("""
     # 🚀 Próximos Passos e Evolução
     
