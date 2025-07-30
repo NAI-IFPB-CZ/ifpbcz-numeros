@@ -67,6 +67,8 @@ pip install -r requirements.txt
 
 ```bash
 streamlit run app.py
+# ou na porta de sua preferencia, ex: 8501
+streamlit run app.py --server.port 8501
 ```
 
 2. **Acesse a aplicação:**
