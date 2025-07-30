@@ -61,7 +61,46 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Execução
+### Deploy para Produção
+
+1. **Verifique as configurações:**
+
+Antes de fazer o deploy, verifique se todas as configurações estão corretas e se o sistema está pronto para produção. Utilize o script `verificar_deploy.py` para validar o ambiente.
+
+2. **Crie um pacote de produção:**
+
+Utilize o script `criar_pacote_producao.py` para criar um pacote ZIP contendo todos os arquivos necessários para o deploy.
+
+3. **Faça o upload do pacote:**
+
+Envie o pacote ZIP para o servidor de produção.
+4. **Descompacte o pacote:**
+
+```bash
+unzip pacote_producao.zip -d /caminho/do/servidor
+```
+5. **Configure o servidor web:**
+Configure o servidor web (ex: Nginx, Apache) para apontar para o diretório onde o pacote foi descompactado.
+6. **Inicie o servidor Streamlit:**
+
+```bash
+streamlit run app.py
+# ou na porta de sua preferencia, ex: 8501
+streamlit run app.py --server.port 8501
+```
+7. **Acesse a aplicação:**
+8. Abra seu navegador e acesse `http://<seu_servidor>:8501`
+9. Verifique se todos os módulos estão funcionando corretamente.
+10. **Monitore os logs:**
+
+```bash
+# Para visualizar os logs do Streamlit
+tail -f /caminho/do/servidor/logs/streamlit.log
+```
+
+
+
+### Execução para Desenvolvimento
 
 1. **Inicie o servidor Streamlit:**
 
