@@ -520,6 +520,7 @@ from modules.auditoria import auditoria_module                     # Controle in
 from modules.mundo_trabalho import mundo_trabalho_module           # Empregabilidade
 from modules.mapa import mapa_module                               # Localização geográfica
 from modules.help_page import show_help                            # Página de ajuda
+from modules.presentation import show_presentation                  # Apresentação institucional
 
 # ==============================================================================
 # FUNÇÃO PRINCIPAL DA APLICAÇÃO
@@ -732,6 +733,21 @@ def main():
     # Atualizar estado da sessão apenas se módulo mudou via selectbox
     if modulo_selecionado != st.session_state.modulo_selecionado:
         st.session_state.modulo_selecionado = modulo_selecionado
+
+    # ==================================================================
+    # HANDLERS PARA AÇÕES ESPECIAIS DA SIDEBAR (PRIORITÁRIAS)
+    # ==================================================================
+    
+    # Processar cliques nos botões de navegação especial ANTES do roteamento
+    if apresentacao:
+        # Exibir apresentação institucional completa
+        show_presentation()
+        return  # Parar execução aqui para não carregar outros módulos
+        
+    if ajuda:
+        # Exibir página de ajuda do sistema
+        show_help()
+        return  # Parar execução aqui para não carregar outros módulos
     
     # ==================================================================
     # ROTEAMENTO PARA MÓDULOS - Executar módulo selecionado
@@ -761,19 +777,6 @@ def main():
         mundo_trabalho_module(data_gen)            # Dashboard de empregabilidade
     elif modulo_ativo == "mapa":
         mapa_module(data_gen)                      # Visualização geográfica dos campus
-    
-    # ==================================================================
-    # HANDLERS PARA AÇÕES ESPECIAIS DA SIDEBAR
-    # ==================================================================
-    
-    # Processar cliques nos botões de navegação especial
-    if apresentacao:
-        # Módulo de apresentação ainda em desenvolvimento
-        st.info("🚧 Módulo de Apresentação em desenvolvimento")
-        
-    if ajuda:
-        # Exibir página de ajuda do sistema
-        show_help()
 
 # ==============================================================================
 # PONTO DE ENTRADA DA APLICAÇÃO

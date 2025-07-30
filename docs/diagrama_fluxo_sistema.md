@@ -4,9 +4,33 @@
 
 O Sistema de Visualização de Dados Institucionais do IFPB Campus Cajazeiras é uma aplicação Streamlit que centraliza informações acadêmicas e administrativas em dashboards interativos.
 
+### 📊 Sobre os Diagramas
+
+Este documento contém dois tipos de representações para cada fluxo:
+
+1. **🖼️ Imagens dos Diagramas**: Visualizações renderizadas dos fluxos (pasta `/fluxo/`)
+2. **📝 Código Mermaid**: Código fonte dos diagramas para edição e customização
+
+As imagens foram geradas usando o [Mermaid Chart](https://www.mermaidchart.com/) e fornecem uma visualização mais clara dos fluxos, enquanto o código Mermaid permite modificações e atualizações dos diagramas.
+
+### 📑 Índice de Figuras
+
+| Figura | Seção | Arquivo da Imagem |
+|--------|-------|-------------------|
+| 🏗️ Arquitetura Principal | [Arquitetura do Sistema](#%EF%B8%8F-arquitetura-do-sistema) | `IFPB-emnumeros-principal _ Mermaid Chart-2025-07-30-021728.png` |
+| 🔄 Fluxo de Navegação | [Fluxo de Navegação](#-fluxo-de-navegação) | `IFPB-emnumeros-inicio-app _ Mermaid Chart-2025-07-30-022333.png` |
+| 🗂️ Estrutura de Módulos | [Estrutura de Módulos](#%EF%B8%8F-estrutura-de-módulos) | `modules _ Mermaid Chart-2025-07-30-022504.png` |
+| 📊 Fluxo de Dados | [Fluxo de Dados](#-fluxo-de-dados) | `Fontes-dados_ Mermaid Chart-2025-07-30-022700.png` |
+| 🔐 Sistema de Segurança | [Sistema de Segurança](#-sistema-de-segurança) | `segurança_ Mermaid Chart-2025-07-30-022836.png` |
+| 🗺️ Módulo Mapa | [Módulo Mapa Detalhado](#%EF%B8%8F-módulo-mapa-detalhado) | `mapa_ Mermaid Chart-2025-07-30-023010.png` |
+| 📈 Pipeline de Visualização | [Pipeline de Visualização](#-pipeline-de-visualização) | `pipeline de visualização Mermaid Chart-2025-07-30-023245.png` |
+| 🚀 Fluxo de Inicialização | [Fluxo de Inicialização](#-fluxo-de-inicialização) | `fluxo-inicialização_ Mermaid Chart-2025-07-30-023415.png` |
+
 ---
 
 ## 🏗️ Arquitetura do Sistema
+
+![Arquitetura Principal](../fluxo/IFPB-emnumeros-principal%20_%20Mermaid%20Chart-2025-07-30-021728.png)
 
 ```mermaid
 graph TD
@@ -51,6 +75,8 @@ graph TD
 
 ## 🔄 Fluxo de Navegação
 
+![Fluxo de Navegação](../fluxo/IFPB-emnumeros-inicio-app%20_%20Mermaid%20Chart-2025-07-30-022333.png)
+
 ```mermaid
 flowchart TD
     START([🌟 Início da Aplicação]) --> INIT[⚙️ Inicializar Configurações]
@@ -84,7 +110,7 @@ flowchart TD
     RENDER --> CHARTS[📊 Gerar Gráficos]
     RENDER --> KPIS[📈 Exibir KPIs]
     RENDER --> TABLES[📋 Criar Tabelas]
-    RENDER --> MAPS[🗺️ Renderizar Mapas (se aplicável)]
+    RENDER --> MAPS[🗺️ Renderizar Mapas]
     
     CHARTS --> END([✅ Módulo Carregado])
     KPIS --> END
@@ -100,6 +126,8 @@ flowchart TD
 ---
 
 ## 🗂️ Estrutura de Módulos
+
+![Estrutura de Módulos](../fluxo/modules%20_%20Mermaid%20Chart-2025-07-30-022504.png)
 
 ```mermaid
 graph LR
@@ -162,32 +190,34 @@ graph LR
 
 ## 📊 Fluxo de Dados
 
+![Fluxo de Dados](../fluxo/Fontes-dados_%20Mermaid%20Chart-2025-07-30-022700.png)
+
 ```mermaid
 flowchart TD
-    subgraph "💾 Fontes de Dados"
-        A[📄 dados/*.xlsx<br/>Planilhas Excel]
-        B[🔄 DataGenerator<br/>Dados Sintéticos]
-        C[🌐 APIs Externas<br/>(Futuro)]
+    subgraph Fontes_de_Dados
+        A[Dados_Excel]
+        B[DataGenerator]
+        C[APIs_Externas]
     end
     
-    subgraph "⚙️ Processamento"
-        D[📋 Carregamento<br/>load_data()]
-        E[🔍 Validação<br/>validate_data()]
-        F[🛠️ Transformação<br/>transform_data()]
+    subgraph Processamento
+        D[Carregamento]
+        E[Validação]
+        F[Transformação]
     end
     
-    subgraph "📊 Visualização"
-        G[📈 Plotly Charts]
-        H[🗺️ Folium Maps]
-        I[☁️ WordClouds]
-        J[📋 Streamlit Tables]
-        K[📊 Streamlit Metrics]
+    subgraph Visualização
+        G[Plotly_Charts]
+        H[Folium_Maps]
+        I[WordClouds]
+        J[Streamlit_Tables]
+        K[Streamlit_Metrics]
     end
     
-    subgraph "🖥️ Interface"
-        L[🎨 CSS Customizado]
-        M[📱 Layout Responsivo]
-        N[🔧 Controles Interativos]
+    subgraph Interface
+        L[CSS_Customizado]
+        M[Layout_Responsivo]
+        N[Controles_Interativos]
     end
     
     A --> D
@@ -223,6 +253,8 @@ flowchart TD
 ---
 
 ## 🔐 Sistema de Segurança
+
+![Sistema de Segurança](../fluxo/segurança_%20Mermaid%20Chart-2025-07-30-022836.png)
 
 ```mermaid
 flowchart TD
@@ -262,18 +294,20 @@ flowchart TD
 
 ## 🗺️ Módulo Mapa Detalhado
 
+![Módulo Mapa](../fluxo/mapa_%20Mermaid%20Chart-2025-07-30-023010.png)
+
 ```mermaid
 flowchart TD
-    A[🗺️ mapa.py] --> B[📍 Campus Coordinates<br/>25 Campus do IFPB]
+    A[🗺️ mapa.py] --> B[📍 Campus Coordinates: 25 Campus do IFPB]
     
     B --> C{🌎 Filtro por Região}
     
-    C --> D[🏙️ Região Metropolitana<br/>6 Campus]
-    C --> E[🌾 Agreste<br/>6 Campus]
-    C --> F[⛰️ Borborema<br/>3 Campus]
-    C --> G[🏜️ Cariri<br/>3 Campus]
-    C --> H[🌵 Sertão<br/>4 Campus]
-    C --> I[🏖️ Litoral<br/>3 Campus]
+    C --> D[🏙️ Região Metropolitana: 6 Campus]
+    C --> E[🌾 Agreste: 6 Campus]
+    C --> F[⛰️ Borborema: 3 Campus]
+    C --> G[🏜️ Cariri: 3 Campus]
+    C --> H[🌵 Sertão: 4 Campus]
+    C --> I[🏖️ Litoral: 3 Campus]
     
     D --> J{📊 Tipo de Visualização}
     E --> J
@@ -282,19 +316,19 @@ flowchart TD
     H --> J
     I --> J
     
-    J --> K[🗺️ Mapa Interativo<br/>Folium + Markers]
-    J --> L[🗺️ Mapa Streamlit<br/>st.map() Nativo]
-    J --> M[📋 Apenas Tabela<br/>DataFrame]
+    J --> K[🗺️ Mapa Interativo: Folium + Markers]
+    J --> L[🗺️ Mapa Streamlit: st.map Nativo]
+    J --> M[📋 Apenas Tabela: DataFrame]
     
-    K --> N[🎯 Popups Interativos<br/>Info dos Campus]
-    L --> O[📍 Pontos Simples<br/>Coordenadas GPS]
-    M --> P[📊 Tabela Ordenada<br/>Campus por Cidade]
+    K --> N[🎯 Popups Interativos: Info dos Campus]
+    L --> O[📍 Pontos Simples: Coordenadas GPS]
+    M --> P[📊 Tabela Ordenada: Campus por Cidade]
     
     N --> Q[📊 Estatísticas por Região]
     O --> Q
     P --> Q
     
-    Q --> R[ℹ️ Informações IFPB<br/>Links Úteis]
+    Q --> R[ℹ️ Informações IFPB: Links Úteis]
     
     style A fill:#1a8c73,color:#fff
     style B fill:#0d5a4e,color:#fff
@@ -306,6 +340,8 @@ flowchart TD
 ---
 
 ## 📈 Pipeline de Visualização
+
+![Pipeline de Visualização](../fluxo/pipeline%20de%20visualização%20Mermaid%20Chart-2025-07-30-023245.png)
 
 ```mermaid
 flowchart LR
@@ -345,6 +381,8 @@ flowchart LR
 ---
 
 ## 🚀 Fluxo de Inicialização
+
+![Fluxo de Inicialização](../fluxo/fluxo-inicialização_%20Mermaid%20Chart-2025-07-30-023415.png)
 
 ```mermaid
 sequenceDiagram
@@ -468,6 +506,6 @@ sequenceDiagram
 
 ---
 
-*📅 Última atualização: 17 de julho de 2025*  
+*📅 Última atualização: 29 de julho de 2025*  
 *🏛️ IFPB - Campus Cajazeiras*  
 *👨‍💻 Sistema desenvolvido para visualização de dados institucionais*

@@ -1,9 +1,34 @@
+# [global]
+# Configurações globais do Streamlit.
+# showWarningOnDirectExecution: Esconde avisos ao executar scripts diretamente.
+
+# [server]
+# Configurações do servidor Streamlit.
+# runOnSave: Reinicia o app ao salvar arquivos.
+# port: Porta em que o servidor será executado.
+
+# [browser]
+# Configurações relacionadas ao navegador.
+# gatherUsageStats: Desativa coleta de estatísticas de uso.
+
+# [theme]
+# Personalização do tema visual do app.
+# primaryColor: Cor principal.
+# backgroundColor: Cor de fundo.
+# secondaryBackgroundColor: Cor de fundo secundária.
+# textColor: Cor do texto.
+
+# [ui]
+# Configurações da interface do usuário.
+# hideTopBar: Esconde a barra superior.
+# hideSidebarNav: Esconde ou mostra a navegação lateral.
+
 [global]
 showWarningOnDirectExecution = false
 
 [server]
 runOnSave = true
-port = 8503
+port = 8501
 
 [browser]
 gatherUsageStats = false
@@ -16,4 +41,3 @@ textColor = "#262730"
 
 [ui]
 hideTopBar = true
-hideSidebarNav = false
