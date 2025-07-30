@@ -818,4 +818,4 @@ def show_contact_support():
     🕒 **Horário**: Segunda a Sexta, 08h às 17h
     """)
     
-    # display_footer() estava duplicado, removido para evitar redundância
+    # display_footer() estava duplicado, removido para evitar redundância. 28/07/2025

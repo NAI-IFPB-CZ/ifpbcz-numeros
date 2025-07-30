@@ -140,7 +140,9 @@ def show_system_overview():
     O **Dashboard IFPB-CZ** é uma plataforma digital integrada que centraliza, organiza e 
     apresenta os principais indicadores institucionais do campus de forma visual, interativa 
     e acessível.
-    
+
+    A concepção do sistema foi inspirada no "IFB em Números" [IFB em Números](https://ifbemnumeros.ifb.edu.br/), uma plataforma de dados do Instituto Federal de Brasília (IFB). O "IFB em Números" foi desenvolvido para que servidores, estudantes e a comunidade em geral possam acessar informações da instituição, funcionando como um instrumento de gestão e transparência pública. A plataforma do IFB é estruturada em módulos de informações, como ensino, pesquisa, extensão, orçamento e gestão de pessoas, permitindo uma interação dinâmica com os dados.
+
     ### 🚀 Desenvolvido por quem?
     
     **Núcleo de Assessoria em Informação (NAI)**
