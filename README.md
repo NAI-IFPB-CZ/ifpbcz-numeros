@@ -146,6 +146,14 @@ ifpbcz-numeros/
 └── paginas-pesquisa.md   # Documentação das páginas de pesquisa
 ```
 
+## 📚 páginas de Pesquisa 
+foram usadas varias ferramentas no auxilio da criação de dashboards e visualizações de dados, veja [Paginas de Pesquisa](paginas-pesquisa.md) para mais detalhes.
+
+## 📄 Documentação
+O fluxo do sistema e a documentação técnica estão disponíveis nos seguintes arquivos:
+- **[Diagrama de Fluxo do Sistema](docs/diagrama_fluxo_sistema.md)** - Visão geral da arquitetura e fluxos de navegação
+- **[Especificação dos Dados Excel](docs/especificacao-excel.md)** - Detalhes sobre o formato dos arquivos Excel utilizados
+
 ## 📊 Configuração de Dados
 
 ### Fonte de Dados
