@@ -680,7 +680,7 @@ def show_next_steps():
     
     ## 📅 Roadmap de Desenvolvimento
     
-    ### 🎯 Curto Prazo (Próximos 3 meses)
+    ### 🎯 Médio Prazo (Próximos 10 meses)
     
     #### 🔧 Melhorias Técnicas
     - **⚡ Performance**: Otimização de carregamento para grandes volumes de dados
@@ -693,9 +693,9 @@ def show_next_steps():
     - **📈 Dados em tempo real**: Atualização automática de indicadores críticos
     - **📊 Novos KPIs**: Indicadores adicionais por solicitação dos gestores
     - **📝 Relatórios**: Geração automática de documentos institucionais
-    
-    ### 🌟 Médio Prazo (6 meses)
-    
+
+    ### 🌟 Médio/Longo Prazo (1-2 anos)
+
     #### 🤖 Inteligência Artificial
     - **📈 Predições**: Modelos de machine learning para previsão de evasão
     - **💡 Insights**: Análises automáticas de padrões nos dados
@@ -708,7 +708,7 @@ def show_next_steps():
     - **📊 Rede Federal**: Extensão para outros IFs do Nordeste
     - **🌍 Internacional**: Conexão com institutos técnicos globais
     
-    ### 🔮 Longo Prazo (1 ano)
+    ### 🔮 Longo Prazo (2 ano)
     
     #### 🚀 Inovações Disruptivas
     - **🥽 Realidade Virtual**: Visualização 3D de dados complexos
