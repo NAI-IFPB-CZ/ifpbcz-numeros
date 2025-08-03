@@ -1194,7 +1194,7 @@ def show_next_steps():
     ### 🤝 Canais de Contribuição
     
     #### 💌 Contato Direto
-    - **📧 E-mail**: nai.cajazeiras@ifpb.edu.br
+    - **📧 E-mail**: nai.cz@ifpb.edu.br
     - **📞 Telefone**: (83) 3532-4100 (Ramal: 4120)
     - **📱 WhatsApp**: (83) 9 9999-9999 (atualizado em breve)
     - **🏛️ Presencial**: NAI - Bloco Administrativo
