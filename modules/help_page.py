@@ -1173,7 +1173,7 @@ def show_contact_support():
     ## 🏆 Créditos
     
     **Desenvolvimento**: Núcleo de Assessoria em Informação (NAI/IFPB-CZ)
-    **Coordenação**: Prof. Teodomiro Alves de Lira Neto
+    **Coordenação**: Prof. Teobaldo Gabriel de Souza Júnior
     **Equipe Técnica**: NAI - IFPB Cajazeiras
     **Versão**: 2.0 - Dashboard Institucional Completo
     **Data**: Julho 2025

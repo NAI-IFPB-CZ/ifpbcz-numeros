@@ -349,7 +349,7 @@ def show_system_overview():
     
     **Núcleo de Assessoria em Informação (NAI)**
     - 👨‍💻 Equipe técnica especializada em dados
-    - 🎓 Coordenação: Prof. Teodomiro Alves de Lira Neto
+    - 🎓 Coordenação: Prof. Teobaldo Gabriel de Souza Júnior
     - 🤝 Apoio da Coordenação de TI do campus
     
     ---
@@ -1217,7 +1217,7 @@ def show_next_steps():
     ## 🏆 Agradecimentos
     
     ### 🤝 Equipe de Desenvolvimento
-    - **👨‍💼 Coordenação**: Prof. Teodomiro Alves de Lira Neto
+    - **👨‍💼 Coordenação**: Prof. Teobaldo Gabriel de Souza Júnior
     - **💻 Desenvolvimento**: Núcleo de Assessoria em Informação (NAI)
     - **🤝 Apoio**: Coordenação de Tecnologia da Informação (CTI)
     - **🎯 Direção**: Direção Geral do Campus Cajazeiras
